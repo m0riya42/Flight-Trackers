@@ -1,0 +1,23 @@
+{
+  "name": "ol-try",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build --public-url . index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.6.0",
+    "country-flag-icons": "^1.2.8",
+    "ol": "^6.5.0",
+    "ol-ext": "^3.1.18",
+    "openlayers-ext": "^3.1.5"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
