@@ -1,3 +1,19 @@
+function toggleDiv(divId) {
+    // debugger
+    let divElement = document.getElementById(divId);;
+    divElement.style.display === 'none' ? divElement.style.display = 'contents' : divElement.style.display = 'none';
+}
+
+document.getElementById('openSideMenuBtn').addEventListener('click', () => {
+    document.getElementById('mapFunctions').classList.toggle('mapMenu-open');
+    //fa fa-times
+    //fas fa-bars
+    document.getElementById('signOpenSideMenu').classList.toggle('fa');
+    document.getElementById('signOpenSideMenu').classList.toggle('fa-times');
+    document.getElementById('signOpenSideMenu').classList.toggle('fas');
+    document.getElementById('signOpenSideMenu').classList.toggle('fa-bars');
+})
+
 
 /****************************************/
 /*            Basic Map                 */
@@ -15,6 +31,7 @@ const mapVectorSource = new ol.source.Vector({
 const mapVectorLayer = new ol.layer.Vector({
     source: mapVectorSource,
 });
+
 const map = new ol.Map({
     target: document.getElementById('map'),
     view: new ol.View({
@@ -25,6 +42,9 @@ const map = new ol.Map({
         minZoom: 1,
         maxZoom: 20,
     }),
+    // controls: [
+    //     new OpenLayers.Control.Attribution({})
+    // ],
     layers: [
         new ol.layer.Tile({
             // source: new OSM() //original map
@@ -36,6 +56,7 @@ const map = new ol.Map({
         }), mapVectorLayer],
 });
 
+// map.removeControl(ol.control.ZoomSlider)
 
 /****************************************/
 /*         Request for Airplanes        */
@@ -73,7 +94,7 @@ function setAirplaneAngle({ newRotation, airplane }) {
         airplane.setStyle(new ol.style.Style({
             image: new ol.style.Icon({
                 // src: images.airplane,
-                src: ".assets/img/airplane.png",
+                src: "./assets/img/airplane.png",
                 rotation: rotation,
             })
         }))
@@ -114,7 +135,6 @@ function requestForIsraelAirplanes() {
                             console.log(`airplane: ${el[0]} updated`);
                             // mapVectorSource.getFeatureById(parseInt(el[0])).getGeometry().setCoordinates([el[5], el[6]]);
                             let airplane = mapVectorSource.getFeatureById(parseInt(el[0]));
-                            debugger
                             airplane.getGeometry().setCoordinates([el[5], el[6]]);
                             setAirplaneAngle({ newRotation: el[10], airplane });
                         }
