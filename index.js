@@ -1,3 +1,9 @@
+function toggleDiv(divId) {
+    // debugger
+    let divElement = document.getElementById(divId);;
+    divElement.style.display === 'none' ? divElement.style.display = 'contents' : divElement.style.display = 'none';
+}
+
 
 /****************************************/
 /*            Basic Map                 */
