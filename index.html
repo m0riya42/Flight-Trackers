@@ -97,22 +97,16 @@
       <!-- <div class="container"> -->
       <!-- <div class="row"> -->
 
-      <div id="mapFunctions" class="mapMenu">
-        <button
-        class="navbar-toggler navbar-toggler-right" style="color: white;"
-        type="button"
-        data-toggle="collapse"
-        data-target="#sideMenu"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
+          <button id="openSideMenuBtn" class="btn-mapMenu"    type="button" >
+        <i id="signOpenSideMenu" class="fas fa-bars"></i>
+        <!--fa fa-times-->
       </button>
-
-
-        <div class="sideMenu">
+      <div id="mapFunctions" class="mapMenu">
+      
+        <div>
           <div>
+          </br>
+          </br>
             <button class="btn-sideMenu" onclick="toggleDiv('shapeAreas')" >Draw Area
             </button>
             <div id="shapeAreas" style="display: none;">

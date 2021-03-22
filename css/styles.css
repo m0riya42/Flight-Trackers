@@ -64,7 +64,7 @@
 }
 
 .mapMenu {
-  width: 13rem;
+  width: 0rem;
   z-index: 10000000;
   height: 96%;
   position: absolute;
@@ -80,14 +80,38 @@
   background-repeat: no-repeat;
   background-size: inherit;
   z-index: 3;
+  transition: width 200ms;
   /* background-size: cover; */
 }
 
-.sideMenu.active {
+.mapMenu-open {
+  width: 13rem;
+}
+
+.btn-mapMenu {
+  left: -1px;
+  position: absolute;
+  background-color: #024a5f;
+  z-index: 4;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.btn-mapMenu:focus {
+  /* border: none; */
+  outline: none;
+  /* background: transparent; */
+  border: 1px solid transparent;
+}
+/* .sideMenu.active {
   color: #fff;
   outline: none;
   border-bottom: 0.25rem solid #fff;
-}
+} */
 
 .btn-sideMenu {
   background: transparent;
@@ -106,8 +130,17 @@
   /* border-bottom: 0.15rem solid #fff; */
   /* border: #fff; */
 }
+.btn-sideMenu-selected {
+  outline: none;
+  -webkit-text-stroke: 0.8px #fff;
+  background: rgba(255, 255, 255, 0.15);
+
+  /* border-bottom: 0.15rem solid #fff; */
+  /* border: #fff; */
+}
 .btn-sideMenu:hover {
   -webkit-text-stroke: 0.5px #fff;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .btn-insideMenu {

@@ -4,6 +4,16 @@ function toggleDiv(divId) {
     divElement.style.display === 'none' ? divElement.style.display = 'contents' : divElement.style.display = 'none';
 }
 
+document.getElementById('openSideMenuBtn').addEventListener('click', () => {
+    document.getElementById('mapFunctions').classList.toggle('mapMenu-open');
+    //fa fa-times
+    //fas fa-bars
+    document.getElementById('signOpenSideMenu').classList.toggle('fa');
+    document.getElementById('signOpenSideMenu').classList.toggle('fa-times');
+    document.getElementById('signOpenSideMenu').classList.toggle('fas');
+    document.getElementById('signOpenSideMenu').classList.toggle('fa-bars');
+})
+
 
 /****************************************/
 /*            Basic Map                 */
@@ -32,6 +42,9 @@ const map = new ol.Map({
         minZoom: 1,
         maxZoom: 20,
     }),
+    // controls: [
+    //     new OpenLayers.Control.Attribution({})
+    // ],
     layers: [
         new ol.layer.Tile({
             // source: new OSM() //original map
@@ -43,6 +56,7 @@ const map = new ol.Map({
         }), mapVectorLayer],
 });
 
+// map.removeControl(ol.control.ZoomSlider)
 
 /****************************************/
 /*         Request for Airplanes        */
