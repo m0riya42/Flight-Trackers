@@ -15,6 +15,7 @@ const mapVectorSource = new ol.source.Vector({
 const mapVectorLayer = new ol.layer.Vector({
     source: mapVectorSource,
 });
+
 const map = new ol.Map({
     target: document.getElementById('map'),
     view: new ol.View({
@@ -73,7 +74,7 @@ function setAirplaneAngle({ newRotation, airplane }) {
         airplane.setStyle(new ol.style.Style({
             image: new ol.style.Icon({
                 // src: images.airplane,
-                src: ".assets/img/airplane.png",
+                src: "./assets/img/airplane.png",
                 rotation: rotation,
             })
         }))
@@ -114,7 +115,6 @@ function requestForIsraelAirplanes() {
                             console.log(`airplane: ${el[0]} updated`);
                             // mapVectorSource.getFeatureById(parseInt(el[0])).getGeometry().setCoordinates([el[5], el[6]]);
                             let airplane = mapVectorSource.getFeatureById(parseInt(el[0]));
-                            debugger
                             airplane.getGeometry().setCoordinates([el[5], el[6]]);
                             setAirplaneAngle({ newRotation: el[10], airplane });
                         }

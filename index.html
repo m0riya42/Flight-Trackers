@@ -1,74 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Grayscale - Start Bootstrap Theme</title>
+    <title>Flight Trackers</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
     <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
     <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css"
+      type="text/css"
+    />
+    <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela+Round"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css"
-        type="text/css" />
 
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
 
     <!-- Pointer events polyfill for old browsers, see https://caniuse.com/#feat=pointer -->
     <script src="https://unpkg.com/elm-pep"></script>
-</head>
+  </head>
 
-<body id="page-top">
+  <body id="page-top">
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#mapFunctions" aria-controls="navbarResponsive" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Flight Trackers</a>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#map">Map</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Information</a></li>
-                    <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li> -->
-
-                </ul>
-            </div>
+      <!-- <div class="container">
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#mapFunctions"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button> -->
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"
+          >Flight Trackers
+          <img src="./assets/img/airplaneSign2.png" style="height: 34px; filter: opacity(0.75)" />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#map">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#projects"
+                >Information</a
+              >
+            </li>
+            <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li> -->
+          </ul>
         </div>
+      </div>
     </nav>
     <!-- Masthead-->
     <header class="masthead">
-        <div class="container d-flex h-100 align-items-center">
-            <div class="mx-auto text-center">
-                <h1 class="mx-auto my-0 text-uppercase">Flight Trackers</h1>
-                <h2 class="text-white-50 mx-auto mt-2 mb-5">A free and open application to track and analyze flights.
-                </h2>
-                <a class="btn btn-primary js-scroll-trigger" href="#map">Get Started</a>
-            </div>
+      <div class="container d-flex h-100 align-items-center">
+        <div class="mx-auto text-center">
+          <h1 class="mx-auto my-0 text-uppercase" style="-webkit-text-stroke: 0.3px #014c60;">
+            Flight Trackers
+            <img src="./assets/img/airplaneSign2.png" style=" -webkit-filter: drop-shadow(0.3px 0.3px 0 #014c60); -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));" />
+          </h1>
+          <h2 class="text-white-50 mx-auto mt-2 mb-5">
+            A free and open application to track and analyze flights.
+          </h2>
+          <a
+            class="btn btn-primary js-scroll-trigger"
+            href="#map"
+            style="background-color: #014c60"
+            >Track Your Flight</a
+          >
         </div>
+      </div>
     </header>
     <!-- Map-->
     <section class="about-section text-center" id="about">
-        <!-- <div class="container"> -->
-        <!-- <div class="row"> -->
+      <!-- <div class="container"> -->
+      <!-- <div class="row"> -->
 
-        <div id="mapFunctions" class="mapMenu">
+      <div id="mapFunctions" class="mapMenu">
+        <button
+        class="navbar-toggler navbar-toggler-right" style="color: white;"
+        type="button"
+        data-toggle="collapse"
+        data-target="#sideMenu"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
 
-        </div>
-        <div id="map" class="map"></div>
 
-        <!-- <div class="col-lg-8 mx-auto">
+        <div class="sideMenu">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger">Draw Area</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger"
+                  >Track Flight</a
+                >
+              </li>
+              <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li> -->
+            </ul>
+          </div>
+
+
+
+
+      </div>
+      <div id="map" class="map"></div>
+
+      <!-- <div class="col-lg-8 mx-auto">
                     <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
                     <p class="text-white-50">
                         Grayscale is a free Bootstrap theme created by Start Bootstrap. It can be yours right now,
@@ -77,16 +140,16 @@
                         . The theme is open source, and you can use it for any purpose, personal or commercial.
                     </p>
                 </div> -->
-        <!-- </div> -->
-        <!-- <img class="img-fluid" src="assets/img/ipad.png" alt="" /> -->
-        <!-- </div> -->
+      <!-- </div> -->
+      <!-- <img class="img-fluid" src="assets/img/ipad.png" alt="" /> -->
+      <!-- </div> -->
     </section>
     <!-- Projects-->
     <section class="projects-section bg-light" id="projects">
-        <div class="container" style="background-color: white;">
-            <p>Hello </p>
-            <!-- Featured Project Row-->
-            <!-- <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+      <div class="container" style="background-color: white">
+        <p>Hello</p>
+        <!-- Featured Project Row-->
+        <!-- <div class="row align-items-center no-gutters mb-4 mb-lg-5">
                 <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg"
                         alt="" /></div>
                 <div class="col-xl-4 col-lg-5">
@@ -98,8 +161,8 @@
                     </div>
                 </div>
             </div> -->
-            <!-- Project One Row-->
-            <!-- <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <!-- Project One Row-->
+        <!-- <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
                 <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="" /></div>
                 <div class="col-lg-6">
                     <div class="bg-black text-center h-100 project">
@@ -114,8 +177,8 @@
                     </div>
                 </div>
             </div> -->
-            <!-- Project Two Row-->
-            <!-- <div class="row justify-content-center no-gutters">
+        <!-- Project Two Row-->
+        <!-- <div class="row justify-content-center no-gutters">
                 <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="" /></div>
                 <div class="col-lg-6 order-lg-first">
                     <div class="bg-black text-center h-100 project">
@@ -131,7 +194,7 @@
                     </div>
                 </div>
             </div> -->
-        </div>
+      </div>
     </section>
     <!-- Signup-->
     <!-- <section class="signup-section" id="signup">
@@ -193,7 +256,7 @@
     </section> -->
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
-        <div class="container">Copyright © Flight Trackers 2020</div>
+      <div class="container">Copyright © Flight Trackers 2021</div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -204,7 +267,5 @@
     <script src="js/scripts.js"></script>
 
     <script src="index.js"></script>
-
-</body>
-
+  </body>
 </html>
