@@ -1,18 +1,54 @@
-function toggleDiv(divId) {
-    // debugger
-    let divElement = document.getElementById(divId);;
-    divElement.style.display === 'none' ? divElement.style.display = 'contents' : divElement.style.display = 'none';
+let openedSideButton;
+function toggleDiv(params) {
+    debugger
+    // console.log(params)
+
+    //if someone is already choosen: close him.
+    let selectedButton = $('#divMapSideMenu').find('.btn-sideMenu-selected')[0]
+    if (selectedButton) {
+        selectedButton.classList.remove('btn-sideMenu-selected');
+        //close toggle:
+        openedSideButton.style.display === 'none'
+    }
+
+    //Open new One:
+    if (params.id) {
+        openedSideButton = document.getElementById(params.id);;
+        openedSideButton.style.display = 'contents';
+        // openedSideButton.style.display === 'none' ? openedSideButton.style.display = 'contents' : openedSideButton.style.display = 'none';
+        params.targetEvent.classList.toggle('btn-sideMenu-selected')
+    }
+    //To-Do:
+    //if button is selected to block or change the 'hover style' on him.
+    //if Dad's button is open- when we choose another dad's button- we need to UNSELECT the old one, close the toggle and to Remove the BTN_SIDEMENU_SELECTED class
 }
 
-document.getElementById('openSideMenuBtn').addEventListener('click', () => {
-    document.getElementById('mapFunctions').classList.toggle('mapMenu-open');
-    //fa fa-times
-    //fas fa-bars
-    document.getElementById('signOpenSideMenu').classList.toggle('fa');
-    document.getElementById('signOpenSideMenu').classList.toggle('fa-times');
-    document.getElementById('signOpenSideMenu').classList.toggle('fas');
-    document.getElementById('signOpenSideMenu').classList.toggle('fa-bars');
-})
+
+
+const toggleButtons = (params) => {
+    // [{id: , classes:[]}]
+    params.forEach(el => {
+        el.classes.forEach(elClass => {
+            document.getElementById(el.id).classList.toggle(elClass);
+        })
+    })
+
+}
+document.getElementById('openSideMenuBtn').addEventListener('click', () => toggleButtons([{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }, { id: 'signOpenSideMenu', classes: ['fa', 'fa-times', 'fas', 'fa-bars'] }]));
+
+document.getElementById('openMobileToolbarBtn').addEventListener('click', () => toggleButtons([{ id: 'mobileToolbar', classes: ['mobileToolbar-open'] }, { id: 'signOpenToolbarMenu', classes: ['fa-angle-up', 'fa-angle-down'] }]));
+// fas fa-angle-upfas fa-angle-down
+
+// document.getElementById('openSideMenuBtn').addEventListener('click', () => {
+//     document.getElementById('divMapSideMenu').classList.toggle('mapMenu-open');
+//     //fa fa-times
+//     //fas fa-bars
+//     document.getElementById('signOpenSideMenu').classList.toggle('fa');
+//     document.getElementById('signOpenSideMenu').classList.toggle('fa-times');
+//     document.getElementById('signOpenSideMenu').classList.toggle('fas');
+//     document.getElementById('signOpenSideMenu').classList.toggle('fa-bars');
+// })
+
 
 
 /****************************************/

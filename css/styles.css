@@ -65,6 +65,7 @@
 
 .mapMenu {
   width: 0rem;
+  display: none;
   z-index: 10000000;
   height: 96%;
   position: absolute;
@@ -86,13 +87,11 @@
 
 .mapMenu-open {
   width: 13rem;
+  display: block;
 }
-
-.btn-mapMenu {
-  left: -1px;
+.btn-toggleMenu {
   position: absolute;
   background-color: #024a5f;
-  z-index: 4;
   color: white;
   padding: 0.25rem 0.75rem;
   font-size: 1.25rem;
@@ -101,12 +100,23 @@
   border-radius: 0.25rem;
 }
 
-.btn-mapMenu:focus {
+.btn-toggleMenu:focus {
   /* border: none; */
   outline: none;
   /* background: transparent; */
   border: 1px solid transparent;
 }
+.btn-mapMenu {
+  left: -1px;
+  z-index: 4;
+}
+
+.btn-mobileToolbar {
+  top: -1;
+  left: 23%;
+  z-index: 6;
+}
+
 /* .sideMenu.active {
   color: #fff;
   outline: none;
@@ -154,6 +164,36 @@
 }
 .btn-insideMenu:focus {
   -webkit-text-stroke: 0.8px #fff;
+}
+
+.mobileToolbar {
+  top: -1;
+  width: 559px;
+  display: none;
+  height: 0px;
+  position: absolute;
+  margin: center;
+  left: 23%;
+  /* background: blue; */
+  z-index: 5;
+  background-color: #0e1f2f;
+  /* display: none; */
+  background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.2) 75%,
+      rgba(1, 75, 96, 1.52) 100%
+    ),
+    url("../assets/img/sideMenu.png");
+  background-repeat: no-repeat;
+  background-size: inherit;
+  z-index: 3;
+  transition: height 200ms;
+}
+
+.mobileToolbar-open {
+  height: 69px;
+  display: block;
 }
 
 html {
