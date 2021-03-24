@@ -8,15 +8,21 @@ function toggleDiv(params) {
     if (selectedButton) {
         selectedButton.classList.remove('btn-sideMenu-selected');
         //close toggle:
-        openedSideButton.style.display === 'none'
+        openedSideButton.classList.remove('insideMenu-open');
+        // close height
+        if (openedSideButton.id === params.id) {
+            openedSideButton = null;
+            return;
+        }
     }
 
     //Open new One:
     if (params.id) {
         openedSideButton = document.getElementById(params.id);;
-        openedSideButton.style.display = 'contents';
+        openedSideButton.classList.add('insideMenu-open');
+        // openedSideButton.style.display = 'contents';
         // openedSideButton.style.display === 'none' ? openedSideButton.style.display = 'contents' : openedSideButton.style.display = 'none';
-        params.targetEvent.classList.toggle('btn-sideMenu-selected')
+        params.targetEvent.classList.add('btn-sideMenu-selected')
     }
     //To-Do:
     //if button is selected to block or change the 'hover style' on him.

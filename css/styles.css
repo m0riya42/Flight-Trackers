@@ -62,6 +62,15 @@
     to(rgba(255, 255, 255, 0))
   ); */
 }
+.insideMenu {
+  height: 0;
+  transition: height 200ms;
+  display: none;
+}
+.insideMenu-open {
+  height: fit-content;
+  display: contents;
+}
 
 .mapMenu {
   width: 0rem;
