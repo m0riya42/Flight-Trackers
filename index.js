@@ -89,7 +89,7 @@ const map = new ol.Map({
     // ],
     layers: [
         new ol.layer.Tile({
-            // source: new OSM() //original map
+            // source: new ol.source.OSM() //original map
             source: new ol.source.XYZ({
                 attributions: attributions,
                 url: 'https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=' + key,
@@ -104,7 +104,12 @@ const map = new ol.Map({
 /*         Request for Airplanes        */
 /****************************************/
 
+//add polyline: for challenge:
+var locations = [[36.11, 15.4], [36.11, 89.4]];
+var polyline = new ol.Feature(new ol.geom.LineString(locations));
+mapVectorSource.addFeature(polyline)
 
+// let polyline = new ol.Feature({
 function createAirplaneIcon(el) {
 
     let airplane = new ol.Feature({

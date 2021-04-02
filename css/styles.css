@@ -185,19 +185,60 @@
   left: 23%;
   /* background: blue; */
   z-index: 5;
-  background-color: #0e1f2f;
+  background-color: rgba(1, 75, 96, 1.52);
+  /* background-color: #0e1f2f; */
   /* display: none; */
-  background: linear-gradient(
+  /* background: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.3) 0%,
       rgba(0, 0, 0, 0.2) 75%,
       rgba(1, 75, 96, 1.52) 100%
     ),
-    url("../assets/img/sideMenu.png");
+    url("../assets/img/sideMenu.png"); */
   background-repeat: no-repeat;
   background-size: inherit;
   z-index: 3;
   transition: height 200ms;
+  border-radius: 0.4rem;
+}
+
+.popUpMsgs {
+  width: 444px;
+  /* display: none; */
+  height: 103px;
+  position: absolute;
+  margin: center;
+  left: 70%;
+  /* background: blue; */
+  z-index: 5;
+  background-color: rgba(1, 75, 96, 1.52);
+  /* background-color: #0e1f2f; */
+  /* display: none; */
+  /* background: linear-gradient( to top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 75%, rgba(1, 75, 96, 1.52) 100% ), url(../assets/img/sideMenu.png); */
+  background-repeat: no-repeat;
+  background-size: inherit;
+  z-index: 3;
+  transition: height 200ms;
+  border-radius: 0.4rem;
+}
+.popUpMsgsBlock {
+  width: 444px;
+  /* display: none; */
+  height: 374px;
+  position: absolute;
+  margin: center;
+  left: 70%;
+  /* background: blue; */
+  z-index: 5;
+  background-color: rgba(1, 75, 96, 1.52);
+  /* background-color: #0e1f2f; */
+  /* display: none; */
+  /* background: linear-gradient( to top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.2) 75%, rgba(1, 75, 96, 1.52) 100% ), url(../assets/img/sideMenu.png); */
+  background-repeat: no-repeat;
+  background-size: inherit;
+  z-index: 3;
+  transition: height 200ms;
+  border-radius: 0.4rem;
 }
 
 .mobileToolbar-open {
