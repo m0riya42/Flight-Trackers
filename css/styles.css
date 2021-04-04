@@ -298,22 +298,30 @@
   display: block;
 } */
 .toolbarBoxes {
+  color: white;
   top: 251px;
-  width: 126px;
-  height: 111px;
+  width: 0px;
+  overflow: hidden;
+  height: 83px;
   position: absolute;
   margin: center;
-  right: 51px;
+  right: 47px;
   background-color: rgba(1, 75, 96, 1.52);
   background-repeat: no-repeat;
   background-size: inherit;
   z-index: 3;
-  transition: height 200ms;
+  transition: width 200ms;
   border-radius: 0.4rem;
   overflow: hidden;
   /* display: flex; */
   flex-direction: column;
 }
+
+.toolbarBoxes-open{
+  width: 260px;
+
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;

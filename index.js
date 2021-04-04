@@ -76,12 +76,35 @@ const onInsideButtonClicked = (e) => {
 //     //         alert('POlygon');
 //     // }
 
+const closeInsideSettingDiv = ({ divId }) => {
+    debugger
+    let openedDiv = $('#toolbarBoxesDiv').find('.toolbarBoxes-open')[0];
+    openedDiv && openedDiv.id != divId && openedDiv.classList.remove('toolbarBoxes-open');
+}
 
 
 //     //    toggleButtons( [{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }]);
 // }
 $('.insideMenu').on('click', 'button', onInsideButtonClicked);
-document.getElementById('popUpSettingsBtn').addEventListener('click', () => toggleButtons([{ id: 'popUpSettings', classes: ['popUpSettingBlock-open'] }, { id: 'popUpSettingSign', classes: ['spinnFontAwsome'] }]));
+document.getElementById('popUpSettingsBtn').addEventListener('click', () => {
+    closeInsideSettingDiv({ divId: 'popUpSettings' });
+    toggleButtons([{ id: 'popUpSettings', classes: ['popUpSettingBlock-open'] }, { id: 'popUpSettingSign', classes: ['spinnFontAwsome'] }]);
+})
+
+
+
+//Toolbar Registration To Events
+document.getElementById('setColor').addEventListener('click', () => {
+    closeInsideSettingDiv({ divId: 'setColorToolbar' });
+    toggleButtons([{ id: 'setColorToolbar', classes: ['toolbarBoxes-open'] }])
+})
+
+document.getElementById('setText').addEventListener('click', () => {
+    closeInsideSettingDiv({ divId: 'textToolbar' });
+    toggleButtons([{ id: 'textToolbar', classes: ['toolbarBoxes-open'] }])
+})
+
+
 // document.getElementById('openMobileToolbarBtn').addEventListener('click', () => toggleButtons([{ id: 'mobileToolbar', classes: ['mobileToolbar-open'] }, { id: 'signOpenToolbarMenu', classes: ['fa-angle-up', 'fa-angle-down'] }]));
 // fas fa-angle-upfas fa-angle-down
 

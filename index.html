@@ -11,10 +11,10 @@
 
   <!--OpenLayers-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css"
-  type="text/css" />
+    type="text/css" />
   <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/build/ol.js"></script>
 
-  
+
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
   <!-- Google fonts-->
@@ -30,7 +30,7 @@
 
 
   <!--Rgba color picker-->
-  
+
   <!-- <script src="./assets/rgbaColorPicker.js"></script> -->
   <!-- <link href="./css/rgbaColorPicker.css" rel="stylesheet" /> -->
 </head>
@@ -61,11 +61,12 @@
   <!-- Masthead-->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center" style=" height: 648px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="mx-auto text-center"
+        style=" height: 648px; display: flex; flex-direction: column; justify-content: space-between;">
         <div>
-        </br>
-        </br>
-        </br>
+          </br>
+          </br>
+          </br>
           <h1 class="mx-auto my-0 text-uppercase" style="-webkit-text-stroke: 0.3px #014c60;">
             Flight Trackers
             <!-- <img src="./assets/img/airplaneSign2.png" -->
@@ -78,7 +79,8 @@
           <h2 class="text-white-50 mx-auto mt-2 mb-5">
             A free and open application to track and analyze flights.
           </h2>
-          <a class="btn btn-primary js-scroll-trigger" href="#map" style="background-color: #014c60">Track Your Flight</a>
+          <a class="btn btn-primary js-scroll-trigger" href="#map" style="background-color: #014c60">Track Your
+            Flight</a>
         </div>
       </div>
     </div>
@@ -88,7 +90,8 @@
   <!-- Map-->
   <section class="about-section text-center" id="about" style="position: relative;">
     <div style="position: absolute; top: 0px; bottom: 0px;"></div>
-    <button id="openSideMenuBtn" title= "Side Menu" class="btn btn-toggleMenu btn-mapMenu" type="button"> <i id="signOpenSideMenu" class="fontAwsomeHover fas fa-bars"></i></button>
+    <button id="openSideMenuBtn" title="Side Menu" class="btn btn-toggleMenu btn-mapMenu" type="button"> <i
+        id="signOpenSideMenu" class="fontAwsomeHover fas fa-bars"></i></button>
     <div id="divMapSideMenu" class="mapMenu">
       </br>
       </br>
@@ -105,81 +108,91 @@
       <!-- <button class="btn-sideMenu" onclick="toggleDiv( {targetEvent: event.target})">Track Flight -->
       <button class="btn btn-sideMenu" onclick="toggleDiv( {id:'trackFlights',targetEvent: event.target})">Track Flight
       </button>
-      
+
       <div id="trackFlights" class="insideMenu">
         <button class="btn btn-sideMenu btn-insideMenu">try1</button>
         <button class="btn btn-sideMenu btn-insideMenu">try2</button>
         <button class="btn btn-sideMenu btn-insideMenu">try3</button>
-      
+
       </div>
-      
+
     </div>
-    
+
     <!--show this button only on hover on map- after mergin with the project or after clicking the editableShape-->
     <!-- <button id="openMobileToolbarBtn" class="btn-toggleMenu btn-mobileToolbar" type="button">
       <i id="signOpenToolbarMenu" class="fas fa-angle-down"></i>
     </button> -->
     <!-- <div id="mobileToolbar" class="mobileToolbar"></div> -->
     <!-- <div id="popUpMessages" class="popUpMsgsBlock"></div> -->
-    
-    
-    <button id="popUpSettingsBtn" title= "Settings" class="btn btn-toggleMenu" style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-cogs"></i></button> 
+
+
+    <button id="popUpSettingsBtn" title="Settings" class="btn btn-toggleMenu" style="z-index: 6;right: 0%;"><i
+        id="popUpSettingSign" class="fontAwsomeHover  fas fa-cogs"></i></button>
     <div id="popUpSettings" class="popUpSettingBlock">
-    </br>
-    </br>
-      <button id="editMode" title= "Edit Mode" class="btn btn-sideMenu btn-toolbarMenu"  style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-edit "></i></button> 
-      <button id="setColor" title= "Set Shape Color" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-palette "></i></button> 
-      <button id="setText" title= "Set Text" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-text-height "></i></button> 
-      <button id="setIcon" title= "Set Icon Options" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-icons "></i></button> 
+      </br>
+      </br>
+      <button id="editMode" title="Edit Mode" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;"><i
+          id="popUpSettingSign" class="fontAwsomeHover  fas fa-edit "></i></button>
+      <button id="setColor" title="Set Shape Color" class="btn btn-sideMenu btn-toolbarMenu"
+        style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-palette "></i></button>
+      <button id="setText" title="Set Text" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;">
+        <img src="./assets/img/text.svg" style="width: 20px;" />
+        <!-- <i id="popUpSettingSign" class="fontAwsomeHover  fas fa-text-height "></i></button>  -->
+        <button id="setIcon" title="Set Icon Options" class="btn btn-sideMenu btn-toolbarMenu"
+          style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-icons "></i></button>
 
     </div>
 
-    <div id="toolbarBox" class="toolbarBoxes" >
-      <div style="position: relative;">
-        <div class="fill" style="
-        position: absolute;
-        top: 0px;
-        left: 0px;">
-        <i ><b>Fill:</b></i>
-          <input type="color" class="color" value="rgba(255,0,0,0.75)" size="5" />
-          <!-- <input type="text" class="color" value="rgba(255,0,0,0.75)" size="5" /> -->
-          <hr>
+    <div id="toolbarBoxesDiv">
+
+      <div id="setColorToolbar" class="toolbarBoxes">
+        <div style="position: relative;">
+          <div style=" position: absolute;
+          top: 0px;
+          left: 0px; height: 20px;"></div>
         </div>
 
-        <div class="stroke">
-          <div>
-            <i ><b>Stroke:</b></i> 
-            <input type="color" class="color" value="rgba(255,0,0,0.75)" size="5" />
-
-          <!-- <input type="text" class="color" value="rgba(255,0,0,0.75)" size="5" /> -->
-          </div>
-         <div class="Width" style="width: 50px;">
-          <i ><b>Line Width:</b></i> 
-          <input type="number" value="" size="3" />
+        <div class="fill" style="    left: 22px;
+          top: -2px;
+          position: absolute;">
+          <i style="    font-size: 13px;"><b>Fill:</b></i>
+          <input type="color" class="color" value="#45ab32" size="3" />
         </div>
 
-
-          <div class="lineDash">
-          <label for="LineDashes">          <i ><b>Line Dash:</b></i> 
-          </label>
-          <select name="LineDashes" id="LineDashes">
+        <div class="stroke" style="     left: 2px;
+        top: 32px;
+        position: absolute;"">
+          <i style=" font-size: 13px;"><b>Stroke:</b></i>
+          <input type="color" class="color" value="#45ab32" size="3" />
+          <input type="number" value="1" size="3" style="width: 42px; height: 24px;" />
+          <select name="LineDashes" id="LineDashes" style="width: 91px;">
             <option value="null">_________</option>
-            <option value="[45,25]">[____ ____]</option>
+            <option value="[45,25]">____ ____</option>
             <option value="[37, 25]">___ ___ ___</option>
             <option value="[30,25]">__ __ __ __</option>
             <option value="[1,10]">......................</option>
             <option value="[1,25]">. . . . . . . . . .</option>
           </select>
         </div>
-        </div>
-       
-    
-        <!-- <form action="changeLineDash()"> -->
-      
-    
       </div>
     </div>
-    
+
+
+    <div id="textToolbar" class="toolbarBoxes" style="  top: 292px !important;
+    ">
+    </div>
+
+
+
+
+    </div>
+
+
+
+    </div>
+
+
+
     <!-- <button class="btn-toggleMenu" style="width: 2px; z-index: 6;right: 0%; height: 50%;"><i class="fas fa-ellipsis-h" style=" transform: rotate(90deg); align-content: center;
       "></i>
     </button> -->
