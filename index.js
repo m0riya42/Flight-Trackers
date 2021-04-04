@@ -1,32 +1,42 @@
 let openedSideButton;
-function toggleDiv(params) {
-    debugger
-    // console.log(params)
+let openedInsideButton;
 
-    //if someone is already choosen: close him.
+const clearOpenedInsideButton = () => {
+    if (openedInsideButton) {
+        openedInsideButton.classList.remove('btn-insideMenu-selected');
+    }
+}
+const clearOpenedsideButton = (toggleDivID) => {
     let selectedButton = $('#divMapSideMenu').find('.btn-sideMenu-selected')[0]
     if (selectedButton) {
         selectedButton.classList.remove('btn-sideMenu-selected');
         //close toggle:
         openedSideButton.classList.remove('insideMenu-open');
         // close height
-        if (openedSideButton.id === params.id) {
+        if (openedSideButton.id === toggleDivID) {
             openedSideButton = null;
-            return;
+            return false;
+        }
+    }
+    return true;
+
+}
+
+function toggleDiv(params) {
+
+    clearOpenedInsideButton();
+    if (clearOpenedsideButton(params.id)) {
+        //Open new One:
+        if (params.id) {
+            openedSideButton = document.getElementById(params.id);;
+            openedSideButton.classList.add('insideMenu-open');
+            // openedSideButton.style.display = 'contents';
+            // openedSideButton.style.display === 'none' ? openedSideButton.style.display = 'contents' : openedSideButton.style.display = 'none';
+            params.targetEvent.classList.add('btn-sideMenu-selected')
         }
     }
 
-    //Open new One:
-    if (params.id) {
-        openedSideButton = document.getElementById(params.id);;
-        openedSideButton.classList.add('insideMenu-open');
-        // openedSideButton.style.display = 'contents';
-        // openedSideButton.style.display === 'none' ? openedSideButton.style.display = 'contents' : openedSideButton.style.display = 'none';
-        params.targetEvent.classList.add('btn-sideMenu-selected')
-    }
-    //To-Do:
-    //if button is selected to block or change the 'hover style' on him.
-    //if Dad's button is open- when we choose another dad's button- we need to UNSELECT the old one, close the toggle and to Remove the BTN_SIDEMENU_SELECTED class
+
 }
 
 
@@ -42,7 +52,37 @@ const toggleButtons = (params) => {
 }
 document.getElementById('openSideMenuBtn').addEventListener('click', () => toggleButtons([{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }, { id: 'signOpenSideMenu', classes: ['fa', 'fa-times', 'fas', 'fa-bars'] }]));
 
-document.getElementById('openMobileToolbarBtn').addEventListener('click', () => toggleButtons([{ id: 'mobileToolbar', classes: ['mobileToolbar-open'] }, { id: 'signOpenToolbarMenu', classes: ['fa-angle-up', 'fa-angle-down'] }]));
+
+
+const onInsideButtonClicked = (e) => {
+    clearOpenedInsideButton();
+    //Create New Selected-inside-nutton
+    e.target.classList.add('btn-insideMenu-selected');
+    openedInsideButton = e.target
+
+    //After Work Done- close toggle 
+    // switch (e.target.closest('div').id){
+    // case 'shapeAreas':
+    //return onClickShapeArea({shapeType: e.target.attributes.getNamedItem('handler').value })
+
+    // }
+
+}
+
+
+// const onShapeChoosen = ({target, targetId}) => {
+//     // switch (targetId) {
+//     //     case 'Polygon':
+//     //         alert('POlygon');
+//     // }
+
+
+
+//     //    toggleButtons( [{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }]);
+// }
+$('.insideMenu').on('click', 'button', onInsideButtonClicked);
+document.getElementById('popUpSettingsBtn').addEventListener('click', () => toggleButtons([{ id: 'popUpSettings', classes: ['popUpSettingBlock-open'] }, { id: 'popUpSettingSign', classes: ['spinnFontAwsome'] }]));
+// document.getElementById('openMobileToolbarBtn').addEventListener('click', () => toggleButtons([{ id: 'mobileToolbar', classes: ['mobileToolbar-open'] }, { id: 'signOpenToolbarMenu', classes: ['fa-angle-up', 'fa-angle-down'] }]));
 // fas fa-angle-upfas fa-angle-down
 
 // document.getElementById('openSideMenuBtn').addEventListener('click', () => {
@@ -105,11 +145,10 @@ const map = new ol.Map({
 /****************************************/
 
 //add polyline: for challenge:
-var locations = [[36.11, 15.4], [36.11, 89.4]];
-var polyline = new ol.Feature(new ol.geom.LineString(locations));
-mapVectorSource.addFeature(polyline)
+// var locations = [[36.11, 15.4], [36.11, 89.4]];
+// var polyline = new ol.Feature(new ol.geom.LineString(locations));
+// mapVectorSource.addFeature(polyline)
 
-// let polyline = new ol.Feature({
 function createAirplaneIcon(el) {
 
     let airplane = new ol.Feature({
