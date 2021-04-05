@@ -9,6 +9,11 @@
   <title>Flight Trackers</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
 
+  <!--Dropzone-->
+  
+  <link rel="stylesheet" href="./js/dropzone/dropzone.css"  type="text/css"/>
+    type="text/css" />
+
   <!--OpenLayers-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css"
     type="text/css" />
@@ -17,11 +22,7 @@
 
   <!-- Font Awesome icons (free version)-->
   <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-  <!-- Google fonts-->
-  <!-- <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" /> -->
-  <!-- <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet" /> -->
+ 
 
   <!-- Core theme CSS (includes Bootstrap)-->
   <link href="css/styles.css" rel="stylesheet" />
@@ -61,8 +62,7 @@
   <!-- Masthead-->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center"
-        style=" height: 648px; display: flex; flex-direction: column; justify-content: space-between;">
+      <div class="mx-auto text-center mastheadStyle">
         <div>
           </br>
           </br>
@@ -122,48 +122,57 @@
     <!-- <button id="openMobileToolbarBtn" class="btn-toggleMenu btn-mobileToolbar" type="button">
       <i id="signOpenToolbarMenu" class="fas fa-angle-down"></i>
     </button> -->
-    <!-- <div id="mobileToolbar" class="mobileToolbar"></div> -->
     <!-- <div id="popUpMessages" class="popUpMsgsBlock"></div> -->
 
 
     <button id="popUpSettingsBtn" title="Settings" class="btn btn-toggleMenu" style="z-index: 6;right: 0%;"><i
         id="popUpSettingSign" class="fontAwsomeHover  fas fa-cogs"></i></button>
+ 
+
     <div id="popUpSettings" class="popUpSettingBlock">
       </br>
       </br>
-      <button id="editMode" title="Edit Mode" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;"><i
-          id="popUpSettingSign" class="fontAwsomeHover  fas fa-edit "></i></button>
+      <button id="editMode" title="Edit Mode" class="btn btn-sideMenu btn-toolbarMenu" ><i
+          id="popUpEditSign" class="fontAwsomeHover  fas fa-edit "></i></button>
       <button id="setColor" title="Set Shape Color" class="btn btn-sideMenu btn-toolbarMenu"
-        style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-palette "></i></button>
-      <button id="setText" title="Set Text" class="btn btn-sideMenu btn-toolbarMenu" style="z-index: 6;right: 0%;">
-        <img src="./assets/img/text.svg" style="width: 20px;" />
-        <!-- <i id="popUpSettingSign" class="fontAwsomeHover  fas fa-text-height "></i></button>  -->
+        ><i id="popUpColorSign" class="fontAwsomeHover  fas fa-palette "></i></button>
+      <button id="setText" title="Set Text" class="btn btn-sideMenu btn-toolbarMenu" >
+        <img id="popUpTextSign" src="./assets/img/text.svg" style="width: 20px;" /> </button>
         <button id="setIcon" title="Set Icon Options" class="btn btn-sideMenu btn-toolbarMenu"
-          style="z-index: 6;right: 0%;"><i id="popUpSettingSign" class="fontAwsomeHover  fas fa-icons "></i></button>
+          ><i id="popUpIconSign" class="fontAwsomeHover  fas fa-icons "></i></button>
 
     </div>
 
     <div id="toolbarBoxesDiv">
 
       <div id="setColorToolbar" class="toolbarBoxes">
-        <div style="position: relative;">
-          <div style=" position: absolute;
+        <div style="position: relative; height: 100%; width: 100%; 
+        display: flex; 
+    text-align: left;
+    flex-direction: column; 
+    justify-content: space-around;
+
+ ">
+        
+        <div id="findMe" style=" position: absolute;
           top: 0px;
-          left: 0px; height: 20px;"></div>
-        </div>
+          left: 0px;"></div>
+       
 
         <div class="fill" style="    left: 22px;
           top: -2px;
-          position: absolute;">
-          <i style="    font-size: 13px;"><b>Fill:</b></i>
-          <input type="color" class="color" value="#45ab32" size="3" />
+          /*position: absolute;*/">
+          <i style="    font-size: 13px;"><b>Fill: &nbsp; &nbsp; </b></i>
+          <input type="color" class="color" value="#606bcd" size="3" />
+          <input type="number" value="1" size="3" style="width: 42px; height: 24px;" disabled />
+
         </div>
 
         <div class="stroke" style="     left: 2px;
         top: 32px;
-        position: absolute;"">
+        /*position: absolute;*/"">
           <i style=" font-size: 13px;"><b>Stroke:</b></i>
-          <input type="color" class="color" value="#45ab32" size="3" />
+          <input type="color" class="color" value="#606bcd" size="3" />
           <input type="number" value="1" size="3" style="width: 42px; height: 24px;" />
           <select name="LineDashes" id="LineDashes" style="width: 91px;">
             <option value="null">_________</option>
@@ -174,24 +183,125 @@
             <option value="[1,25]">. . . . . . . . . .</option>
           </select>
         </div>
+
       </div>
     </div>
 
+ <div id="textToolbar" class="toolbarBoxes" style="  top: 292px !important;">
+  <div style="position: relative; height: 100%; width: 100%;">
+        
+    <!-- <div id="findMe" style=" position: absolute;
+      top: 0px;
+      left: 0px;"></div>
+    -->
 
-    <div id="textToolbar" class="toolbarBoxes" style="  top: 292px !important;
-    ">
+    <div class="textInputDiv" style="    left: 22px;
+      top: -2px;
+      /*position: absolute;*/">
+      <i style="    font-size: 13px;"><b>Text:</b></i>
+      <!-- <input type="color" class="color" value="#606bcd" size="3" /> -->
+      <input type="text" placeholder="Enter your text here..." size="3" style="width: 172px; height: 24px;" />
+
+    </div>
+
+    <div class="textFillDiv" style="     left: 2px;
+    top: 32px;
+    /*position: absolute;*/"">
+      <i style=" font-size: 12px;"><b>Fill:</b></i>
+      <input type="color" class="color" value="#606bcd" size="2" />
+
+      <i style=" font-size: 12px;"><b>Stroke:</b></i>
+      <input type="color" class="color" value="#606bcd" size="2" />
+      <i style=" font-size: 12px;"><b>Size:</b></i>
+      <input type="number" value="1" size="2" style="width: 42px; height: 24px;" />
+      
+    </div>
+    <div class="ShowLabelDiv" style="     left: 2px;
+    top: 32px;
+    /*position: absolute;*/"">
+     
+<!-- value="true" -->
+      <input type="checkbox" id="showLabel" name="showLabelInput" >
+      <label for="showLabel"style=" font-size: 12px;"> <i><b>Show Label</b></i></label><br>
+      <!-- <input type="checkbox" value="1" size="3" style="width: 42px; height: 24px;" /> -->
+
+
+    </div>
+
+  </div>
+
+
+
     </div>
 
 
+ <div id="iconToolbar" class="toolbarBoxes" style="  top: 292px !important;">
+  <div style="position: relative; height: 100%; width: 100%;">
+        
+    <!-- <div id="findMe" style=" position: absolute;
+      top: 0px;
+      left: 0px;"></div>
+    -->
+
+    <div class="srcInputDiv" style="    left: 22px;
+      top: -2px;
+      /*position: absolute;*/"> 
+      <i style="    font-size: 13px;"><b>New Icon: </b></i>
+      <i class="fa fa-camera"></i>
+      <!-- <input type="color" class="color" value="#606bcd" size="3" /> -->
+       <!-- <span class="name">No file selected</span> -->
+       <!-- <form action="/upload-target" class="dropzone"> -->
+        <input type="file" name="" id="IconPicker" onchange="handleFiles(this.files)">
+      </form>
+      <!-- <input type='file' /> -->
+      <!-- <input type="text" placeholder="Enter your text here..." size="3" style="width: 172px; height: 24px;" /> -->
+
+    </div>
+<!-- 
+    <div class="textFillDiv" style="     left: 2px;
+    top: 32px;
+    /*position: absolute;*/"">
+      <i style=" font-size: 12px;"><b>Fill:</b></i>
+      <input type="color" class="color" value="#606bcd" size="2" />
+
+      <i style=" font-size: 12px;"><b>Stroke:</b></i>
+      <input type="color" class="color" value="#606bcd" size="2" />
+      <i style=" font-size: 12px;"><b>Size:</b></i>
+      <input type="number" value="1" size="2" style="width: 42px; height: 24px;" />
+      
+    </div>
+    <div class="ShowLabelDiv" style="     left: 2px;
+    top: 32px;
+    /*position: absolute;*/""> -->
+     
+
+    </div>
+
+  </div>
+
 
 
     </div>
 
+  </div>
 
 
+
+
+   
+
+
+    <button id="popUpSearchBtn" title="Search" class="btn btn-toggleMenu" style="z-index: 6;right: 68px;"><i
+      id="popUpSearchSign" class="fontAwsomeHover  fas fa-search"></i></button>
+    <div id="searchInputDiv" class="popUpSettingBlock popUpSearchBlock" >
+      <input id="searchInput" type="text" placeholder="Search.." name="search" style="height: 28px;
+      width: 160px;
+      border-radius: 5px;
+      border: #024a5f;
+      outline-color: #024a5f;">
     </div>
 
-
+  <!--open div+ focus on input-->
 
     <!-- <button class="btn-toggleMenu" style="width: 2px; z-index: 6;right: 0%; height: 50%;"><i class="fas fa-ellipsis-h" style=" transform: rotate(90deg); align-content: center;
       "></i>
@@ -211,6 +321,8 @@
   <footer class="footer bg-black small text-center text-white-50">
     <div class="container">Copyright © Flight Trackers 2021</div>
   </footer>
+
+  <script src="./js/dropzone/dropzone.js"></script>
   <!-- Bootstrap core JS-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>

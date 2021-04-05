@@ -61,6 +61,12 @@
   src: url(../fonts/VarelaRound-Regular.ttf);
 }
 
+.mastheadStyle {
+  height: 648px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .map {
   width: 100%;
   height: 900px;
@@ -122,6 +128,8 @@
   border-radius: 0.25rem;
 }
 .btn-toolbarMenu.btn-toolbarMenu {
+  z-index: 6;
+  right: 0%;
   background-color: #024a5f;
   color: white;
   padding: 0.25rem 0.75rem;
@@ -223,7 +231,17 @@
   -webkit-text-stroke: 0.8px #fff;
   background: rgba(255, 255, 255, 0.1) !important;
 }
+.popUpSearchBlock.popUpSearchBlock {
+  height: 28px !important;
+  width: 0px;
+  right: 98px !important;
+  top: 161px;
+  transition: width 200ms;
+}
 
+.popUpSearchBlock-open {
+  width: 165px !important;
+}
 /* .mobileToolbar {
   top: -1;
   width: 559px;
@@ -291,6 +309,7 @@
 .popUpSettingBlock-open {
   /* rotate: rotate(360deg); */
   height: 216px;
+  z-index: 5;
 }
 
 /* .mobileToolbar-open {
@@ -317,9 +336,8 @@
   flex-direction: column;
 }
 
-.toolbarBoxes-open{
+.toolbarBoxes-open {
   width: 260px;
-
 }
 
 html {

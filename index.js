@@ -1,6 +1,51 @@
 let openedSideButton;
 let openedInsideButton;
 
+var img111 = new Image();
+
+function getBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+function handleFiles(fileList) {
+    if (!fileList.length) {
+        console.log("No files selected!");
+    } else {
+        console.log(fileList.length);
+        console.log(fileList[0]);
+
+        getBase64(fileList[0]).then(
+            (dataBase64) => {
+                console.log(dataBase64)
+            }
+        );
+        // img111.src = window.URL.createObjectURL(fileList[0]);
+
+        // console.log("src: " + img111.src);
+        // console.log("width: " + img111.width + " / height: " + img111.height);
+
+        // img111.onload = function () {
+        //     window.URL.revokeObjectURL(this.src);
+        // }
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    //the event occurred
+    // myDropzone = new Dropzone("#IconPicker", {
+    //     url: (file) => {
+    //         alert(file)
+    //     }
+    // });
+})
+
+
 const clearOpenedInsideButton = () => {
     if (openedInsideButton) {
         openedInsideButton.classList.remove('btn-insideMenu-selected');
@@ -21,6 +66,9 @@ const clearOpenedsideButton = (toggleDivID) => {
     return true;
 
 }
+
+
+
 
 function toggleDiv(params) {
 
@@ -77,7 +125,7 @@ const onInsideButtonClicked = (e) => {
 //     // }
 
 const closeInsideSettingDiv = ({ divId }) => {
-    debugger
+    // debugger
     let openedDiv = $('#toolbarBoxesDiv').find('.toolbarBoxes-open')[0];
     openedDiv && openedDiv.id != divId && openedDiv.classList.remove('toolbarBoxes-open');
 }
@@ -86,9 +134,20 @@ const closeInsideSettingDiv = ({ divId }) => {
 //     //    toggleButtons( [{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }]);
 // }
 $('.insideMenu').on('click', 'button', onInsideButtonClicked);
+
+
 document.getElementById('popUpSettingsBtn').addEventListener('click', () => {
     closeInsideSettingDiv({ divId: 'popUpSettings' });
     toggleButtons([{ id: 'popUpSettings', classes: ['popUpSettingBlock-open'] }, { id: 'popUpSettingSign', classes: ['spinnFontAwsome'] }]);
+})
+
+document.getElementById('popUpSearchBtn').addEventListener('click', () => {
+    // closeInsideSettingDiv({ divId: 'popUpSettings' });
+    toggleButtons([{ id: 'searchInputDiv', classes: ['popUpSearchBlock-open'] }]);
+    //+focus on input if opened
+    let selectedButton = $('#searchInputDiv')[0];
+    selectedButton && selectedButton.classList.contains('popUpSearchBlock-open') && document.getElementById("searchInput").focus();
+
 })
 
 
@@ -102,6 +161,11 @@ document.getElementById('setColor').addEventListener('click', () => {
 document.getElementById('setText').addEventListener('click', () => {
     closeInsideSettingDiv({ divId: 'textToolbar' });
     toggleButtons([{ id: 'textToolbar', classes: ['toolbarBoxes-open'] }])
+})
+
+document.getElementById('setIcon').addEventListener('click', () => {
+    closeInsideSettingDiv({ divId: 'iconToolbar' });
+    toggleButtons([{ id: 'iconToolbar', classes: ['toolbarBoxes-open'] }])
 })
 
 
