@@ -325,3 +325,15 @@ function requestForIsraelAirplanes() {
 }
 
 setInterval(requestForIsraelAirplanes, 10000);
+
+
+
+//Draw for 
+const draw = new ol.interaction.Draw({
+    source: mapVectorSource,
+    type: "Polygon",
+});
+drawPolygon = () => {
+    map.addInteraction(draw);
+    draw.on('drawend', () => map.removeInteraction(draw));
+}
