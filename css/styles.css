@@ -219,8 +219,9 @@
 .btn-insideMenu {
   color: #f1e8cd !important;
   height: 29px;
-  text-indent: 3rem;
+  text-indent: 2rem;
   text-align: left !important;
+  font-size: 10px !important;
 }
 .btn-insideMenu:hover {
   -webkit-text-stroke: 0.5px #fff;

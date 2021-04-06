@@ -95,15 +95,19 @@
     <div id="divMapSideMenu" class="mapMenu">
       </br>
       </br>
+      <button class="btn btn-sideMenu">Instructions</button> <!--open modal with explantions-->
       <button class="btn btn-sideMenu" onclick="toggleDiv( {id:'shapeAreas', targetEvent: event.target})">Draw Area
       </button>
       <div id="shapeAreas" class="insideMenu">
-        <button class="btn btn-sideMenu btn-insideMenu" handler="Polygon">Polygon</button>
+        <!-- polygon: <i class="fas fa-draw-polygon"></i>-->
+        <button class="btn btn-sideMenu btn-insideMenu">Alert Area</button>
+        <button class="btn btn-sideMenu btn-insideMenu">Counter Area</button>
+        <!-- <button class="btn btn-sideMenu btn-insideMenu" handler="Polygon">Polygon</button>
         <button class="btn btn-sideMenu btn-insideMenu">LineString</button>
         <button class="btn btn-sideMenu btn-insideMenu">Rectangle</button>
         <button class="btn btn-sideMenu btn-insideMenu">Circle</button>
         <button class="btn btn-sideMenu btn-insideMenu">Point</button>
-        <button class="btn btn-sideMenu btn-insideMenu">Ellipse</button>
+        <button class="btn btn-sideMenu btn-insideMenu">Ellipse</button> -->
       </div>
       <!-- <button class="btn-sideMenu" onclick="toggleDiv( {targetEvent: event.target})">Track Flight -->
       <button class="btn btn-sideMenu" onclick="toggleDiv( {id:'trackFlights',targetEvent: event.target})">Track Flight
@@ -150,9 +154,7 @@
         display: flex; 
     text-align: left;
     flex-direction: column; 
-    justify-content: space-around;
-
- ">
+    justify-content: space-around; ">
         
         <div id="findMe" style=" position: absolute;
           top: 0px;
@@ -290,6 +292,10 @@
 
    
 
+  <!-- <input type="radio" class="btn-check btn-toggleMenu" name="drawShapesOptions" autocomplete="off" style="z-index: 6;right: 68px;"><i
+    id="popUpSearchSign" class="fontAwsomeHover  fas fa-draw-polygon"></i></input>
+  <input type="radio" class="btn-check btn-toggleMenu" name="drawShapesOptions" autocomplete="off" style="z-index: 6;right: 68px;"><i
+    id="popUpSearchSign" class="fontAwsomeHover  fas fa-draw-polygon"></i></input> -->
 
     <button id="popUpSearchBtn" title="Search" class="btn btn-toggleMenu" style="z-index: 6;right: 68px;"><i
       id="popUpSearchSign" class="fontAwsomeHover  fas fa-search"></i></button>
