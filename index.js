@@ -3,6 +3,29 @@ let openedInsideButton;
 
 var img111 = new Image();
 
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+
+function saveToPDF() {
+
+    var doc = new jsPDF('landscape', "mm", 'A4');
+    doc.setFontSize(13);
+    var width = doc.internal.pageSize.width;
+    // var width = doc.internal.pageSize.getWidth();
+    var height = doc.internal.pageSize.height;
+
+    doc.fromHTML($('#TableInformationDiv').html(), 15, 15, {
+        'width': width,
+        'height': height,
+        'elementHandlers': specialElementHandlers
+    });
+    doc.save('Area Information.pdf');
+}
+
 function getBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -21,6 +44,8 @@ function handleFiles(fileList) {
 
         getBase64(fileList[0]).then(
             (dataBase64) => {
+                //in order to change icons we have to make sure:
+                //that after  updating the image the airplanes will still have thier true track. 
                 console.log(dataBase64)
             }
         );
@@ -337,3 +362,53 @@ drawPolygon = () => {
     map.addInteraction(draw);
     draw.on('drawend', () => map.removeInteraction(draw));
 }
+
+
+/*function addUserEvent(event) {
+    debugger
+
+    //DOM:
+    tbodyElement = event.target.parentElement.parentElement.getElementsByTagName('tbody')[0];
+    newLineNumber = tbodyElement.rows.length;
+    bodyId = tbodyElement.id;
+    newRaw = tbodyElement.insertRow(newLineNumber);
+
+    //edit html row
+    myHtmlContent = '<td class="pl-4">#newLIneNumber#</td><td><input class="font-medium mb-0 editableInput" name="fullName" size="12"  ></input></td><td><input class="font-medium mb-0 editableInput" name="userName" size="12" ></input></td><td><input class="font-medium mb-0 editableInput" name="password" size="12" ></input></td>'
+    selectHtml = '<td><select class="form-control category-select" ="width: 109px; height: auto;" id="exampleFormControlSelect1"><option>Manger</option><option>Worker</option><option>Customer</option><option>Supplier</option></select></td>';
+    storeId = '<td><input class="font-medium mb-0 editableInput" name="storeId" size="5"></input></td>';
+    htmlContinue = '<td><input class="font-medium mb-0 editableInput" name="Email" size="12" ></input></td><td><input class="font-medium mb-0 editableInput" name="Phone" size="12" ></input></td><td><button type="button" name="buttonDeleteUser"class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2 deleteUserStyle"><i class="fa fa-trash"></i></button><button type="button" name="buttonEditUser"class="btn btn-outline-info btn-circle btn-lg -circle ml-2 editUserStyle"><i class="fa fa-edit"></i> </button><button type="button" name="buttonSaveUser"class="btn -outline-info btn-circle btn-lg btn-circle ml-2 saveUserStyle"><i class="fa fa-save"></i> </button></td>';
+    myHtmlContent = myHtmlContent.replace('#newLIneNumber#', ++newLineNumber);
+
+
+    if (bodyId === 'Worker') {
+      myHtmlContent = myHtmlContent + selectHtml + storeId + htmlContinue;
+    }
+    else {
+      myHtmlContent = myHtmlContent + selectHtml + htmlContinue;
+    }
+    newRaw.innerHTML = myHtmlContent;
+
+    //registering to events:
+
+    newRaw.getElementsByClassName('editUserStyle')[0].addEventListener('click', editUserEvent)
+    newRaw.getElementsByClassName('saveUserStyle')[0].addEventListener('click', saveUserEvent)
+    newRaw.getElementsByClassName('deleteUserStyle')[0].addEventListener('click', deleteUserEvent)
+
+
+///////////////////////////////////////////////////////////    Unix Time
+
+בהתחלה ניסינו לבקש מהשרת בjavaScript את הנתונים, ולנסות 'לגעת' במשתנים.
+כדי לקבל את הזמן ברגע הבקשה ולהמיר אותה ל unix-time:
+let epochTime=Math.round(new Date().getTime() / 1000)
+כדי לקבל את התאריך בחזרה:
+let normalTime= newDate(0); // 0:sets the date to epoch
+normalTime.setUTCSeconds(epochTime);
+
+
+
+
+
+
+  }
+*/

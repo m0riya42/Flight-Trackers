@@ -243,7 +243,7 @@
 .popUpSearchBlock-open {
   width: 165px !important;
 }
- .mobileToolbar {
+.mobileToolbar {
   width: 421px;
   height: 30px;
   position: absolute;
@@ -255,16 +255,16 @@
   background-size: inherit;
   z-index: 3;
   transition: height 200ms;
-  border-radius: 0/*0.4rem*/;
+  border-radius: 0 /*0.4rem*/;
   top: 160px;
 }
 
-.mobileToolbarInsideDivs{
+.mobileToolbarInsideDivs {
   position: relative;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 }
 .popUpMsgs {
   width: 444px;
@@ -295,7 +295,7 @@
   z-index: 3;
   transition: height 200ms;
   border-radius: 0.4rem;
-} 
+}
 
 .popUpSettingBlock {
   width: 51px;
