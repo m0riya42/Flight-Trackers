@@ -110,10 +110,13 @@ function onSideButtonClicked(params) {
         }
         else {
             toggleSideMenu();
+            closeOpenMobileToolbar({})
+
             //Do Action As Requested
             switch (params.targetEvent.id) {
                 case "filterFlight":
                     $('#filterAreasToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+                    break;
 
 
             }
@@ -142,6 +145,7 @@ const onInsideButtonClicked = (e) => {
     switch (e.target.closest('div').id) {
         case 'shapeAreas':
             //Show toolbar: Make sure to close it when starting drawing/choosing shape
+            closeOpenMobileToolbar({ divId: 'AreaChooseShapeToolbar' })
             $('#AreaChooseShapeToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
             break
         //AreaChooseShape
@@ -166,6 +170,10 @@ const closeInsideSettingDiv = ({ divId }) => {
     openedDiv && openedDiv.id != divId && openedDiv.classList.remove('toolbarBoxes-open');
 }
 
+const closeOpenMobileToolbar = ({ divId }) => {
+    let openedDiv = $('#mobileToolbarDiv').find('.mobileToolbarInsideDivs-open')[0];
+    openedDiv && openedDiv.id != divId && openedDiv.classList.remove('mobileToolbarInsideDivs-open');
+}
 
 
 /****************************************/
