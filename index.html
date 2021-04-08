@@ -90,73 +90,108 @@
   <!-- Map-->
   <section class="about-section text-center" id="about" style="position: relative;">
     <div style="position: absolute; top: 0px; bottom: 0px;"></div>
-    <button id="openSideMenuBtn" title="Side Menu" class="btn btn-toggleMenu btn-mapMenu" type="button"> <i
-        id="signOpenSideMenu" class="fontAwsomeHover fas fa-bars"></i></button>
+    <button id="openSideMenuBtn" title="Side Menu" class="btn btn-toggleMenu btn-mapMenu"> <i id="signOpenSideMenu"
+        class="fontAwsomeHover fas fa-bars"></i></button>
     <div id="divMapSideMenu" class="mapMenu">
       </br>
       </br>
       <button class="btn btn-sideMenu">Instructions</button>
       <!--open modal with explantions-->
-      <button class="btn btn-sideMenu" onclick="toggleDiv( {id:'shapeAreas', targetEvent: event.target})">Draw Area
+      <button class="btn btn-sideMenu" onclick="onSideButtonClicked( {id:'shapeAreas', targetEvent: event.target})">Draw
+        Area
       </button>
+
       <div id="shapeAreas" class="insideMenu">
-        <!-- polygon: <i class="fas fa-draw-polygon"></i>-->
-        <button class="btn btn-sideMenu btn-insideMenu">Alert Area</button>
-        <button class="btn btn-sideMenu btn-insideMenu">Counter Area</button>
-        <!-- <button class="btn btn-sideMenu btn-insideMenu" handler="Polygon">Polygon</button>
-        <button class="btn btn-sideMenu btn-insideMenu">LineString</button>
-        <button class="btn btn-sideMenu btn-insideMenu">Rectangle</button>
-        <button class="btn btn-sideMenu btn-insideMenu">Circle</button>
-        <button class="btn btn-sideMenu btn-insideMenu">Point</button>
-        <button class="btn btn-sideMenu btn-insideMenu">Ellipse</button> -->
+        <button class="btn btn-sideMenu btn-insideMenu" handler="Alert Area">Alert Area</button>
+        <button class="btn btn-sideMenu btn-insideMenu" handler="Counter Area">Counter Area</button>
       </div>
-      <!-- <button class="btn-sideMenu" onclick="toggleDiv( {targetEvent: event.target})">Track Flight -->
-      <button class="btn btn-sideMenu" onclick="toggleDiv( {id:'trackFlights',targetEvent: event.target})">Track Flight
-      </button>
+      <button id="filterFlight" class="btn btn-sideMenu"
+        onclick="onSideButtonClicked({targetEvent: event.target})">Filter Flights </button>
 
-      <div id="trackFlights" class="insideMenu">
-        <button class="btn btn-sideMenu btn-insideMenu">try1</button>
-        <button class="btn btn-sideMenu btn-insideMenu">try2</button>
-        <button class="btn btn-sideMenu btn-insideMenu">try3</button>
-
-      </div>
 
     </div>
 
 
 
+    <!--Show ONLY if Needed-->
     <div id="mobileToolbarDiv" class="mobileToolbar">
 
       <!--draw Shape-->
-      <div id="AreaChooseShape" class="mobileToolbarInsideDivs">
+      <!--Try Something Else-->
+      <div id="AreaChooseShapeToolbar" class="mobileToolbarInsideDivs">
+
+
+        <!--    <button type="button" role="button" class="btn-toolbarMenu dropdown-toggle" id="fileMenuLink"
+          data-toggle="dropdown" aria-expanded="false"> <i class="fontAwsomeHover fas fa-draw-polygon"></i>
+          <i>Choose Shape</i>
+        </button>
+
+        <div class="dropdown-menu" style="">
+          <button type="button" role="button" class="newBtn dropdown-item"
+            title="Clear all entered data and start a new request.">Polygon</button>
+
+          <button type="button" role="button" class="saveBtn dropdown-item"
+            title="Save request to your online ReqBin account.">Rectangle</button>
+
+          <button type="button" role="button" class="copyBtn dropdown-item"
+            title="Duplicate request and save it to your ReqBin online account.">Ellipse</button>-->
+
+        <!--Original-->
+
         <button title="Polygon" class="btn btn-toolbarMenu" onclick="drawPolygon()"> <i id="signOpenSideMenu"
-            class="fontAwsomeHover fas fa-draw-polygon"></i></button>
+            class="fontAwsomeHover fas fa-draw-polygon" style="width: 16px;"></i><i style="font-size: 8px;"><b>
+              &nbsp;Polygon</b></i>
+        </button>
         <!-- <br> -->
         <button title="Rectangle" class="btn btn-toolbarMenu">
-          <img id="popUpTextSign" src="./assets/img/rectangle.svg" style="width: 20px;" /></button>
+          <img id="popUpTextSign" src="./assets/img/rectangle.svg" style="width: 16px;" /><i style="font-size: 8px;"><b>
+              &nbsp;Rectangle</b></i></button>
         <!-- <br> -->
         <button title="Circle" class="btn btn-toolbarMenu">
-          <img id="popUpTextSign" src="./assets/img/circle.svg" style="width: 20px;" /></button>
+          <img id="popUpTextSign" src="./assets/img/circle.svg" style="width: 16px;" /><i style="font-size: 8px;"><b>
+              &nbsp;Circle</b></i></button>
         <!-- <br> -->
         <button title="Ellipse" class="btn btn-toolbarMenu">
-          <img id="popUpTextSign" src="./assets/img/ellipse.svg" style="width: 20px;" /></button>
+          <img id="popUpTextSign" src="./assets/img/ellipse.svg" style="width: 16px;" /><i style="font-size: 8px;"><b>
+              &nbsp;Ellipse</b></i></button>
+      </div>
+
+
+      <!-- </div> -->
+
+      <!--filter-->
+      <div id="filterAreasToolbar" class="mobileToolbarInsideDivs">
+        <!--think about options for filter--show table of information to specific Area
+        advanced option: save to pdf -->
+      </div>
+
+
+      <!--click on Area-->
+      <div id="editAreaToolbar" class="mobileToolbarInsideDivs">
+
+        <div class="SetAreaMode">
+          <input type="checkbox" id="editMode">
+          <label for="editMode" style=" font-size: 12px; color: white;"> <i><b>Set Area</b></i></label><br>
+        </div>
+
+        <div class="SetAreaName" style="display: flex;     align-items: baseline;">
+          <label style=" font-size: 12px; color: white;"> <i><b>Area Name:</b></i></label><br>
+          <input id="inputAreaName" disabled type="text" placeholder="Area Name" Value="#AreaName#" size="3"
+            style="width: 100px; height: 24px;" />
+          <button id="btnSetAreaName" title="Set Area Name" class="btn btn-toolbarMenu"
+            onClick="onSetAreaNameClicked({nameInput:'inputAreaName', buttonSign:'popUpEditSign', targetEvent: event.target})"><i
+              style="height: 17px;" id="popUpEditSign" class="fontAwsomeHover  fas fa-edit "></i> <i></i></button>
+        </div>
+
+
 
       </div>
 
-      <!--filter-->
-      <!-- <div id="filter Areas" class="mobileToolbarInsideDivs"> -->
-      <!--think about options for filter--show table of information to specific Area
-        advanced option: save to pdf -->
-      <!-- </div> -->
-
     </div>
-    <!--show this button only on hover on map- after mergin with the project or after clicking the editableShape-->
-    <!--<button id="openMobileToolbarBtn" class="btn-toggleMenu btn-mobileToolbar" type="button">
-      <i id="signOpenToolbarMenu" class="fas fa-angle-down"></i>
-    </button> -->
 
 
-    <div id="popUpMessages" class="popUpMsgsBlock"></div>
+    <!--POP-UP Information-->
+    <!-- <div id="popUpMessages" class="popUpMsgsBlock"></div> -->
 
 
     <button id="popUpSettingsBtn" title="Settings" class="btn btn-toggleMenu" style="z-index: 6;right: 0%;"><i
@@ -343,13 +378,6 @@
 
 
 
-
-
-    <!-- <input type="radio" class="btn-check btn-toggleMenu" name="drawShapesOptions" autocomplete="off" style="z-index: 6;right: 68px;"><i
-    id="popUpSearchSign" class="fontAwsomeHover  fas fa-draw-polygon"></i></input>
-  <input type="radio" class="btn-check btn-toggleMenu" name="drawShapesOptions" autocomplete="off" style="z-index: 6;right: 68px;"><i
-    id="popUpSearchSign" class="fontAwsomeHover  fas fa-draw-polygon"></i></input> -->
-
     <button id="popUpSearchBtn" title="Search" class="btn btn-toggleMenu" style="z-index: 6;right: 68px;"><i
         id="popUpSearchSign" class="fontAwsomeHover  fas fa-search"></i></button>
     <div id="searchInputDiv" class="popUpSettingBlock popUpSearchBlock">
@@ -360,11 +388,7 @@
       outline-color: #024a5f;">
     </div>
 
-    <!--open div+ focus on input-->
 
-    <!-- <button class="btn-toggleMenu" style="width: 2px; z-index: 6;right: 0%; height: 50%;"><i class="fas fa-ellipsis-h" style=" transform: rotate(90deg); align-content: center;
-      "></i>
-    </button> -->
     <div id="map" class="map"></div>
   </section>
 
@@ -403,8 +427,6 @@
 
                   <td>
                     #info#
-                    <!-- <label class="font-medium mb-0 editableInput" name="fullName" size="12" value="Daniel Kristeen"
-                      readonly=""> -->
                   </td>
                   <td>
                     #info#
@@ -431,8 +453,6 @@
 
                   <td>
                     #info#
-                    <!-- <label class="font-medium mb-0 editableInput" name="fullName" size="12" value="Daniel Kristeen"
-                      readonly=""> -->
                   </td>
                   <td>
                     #info#
@@ -451,35 +471,6 @@
                   </td>
 
                 </tr>
-
-                <tr>
-                  <td class="pl-4">
-                    3
-                  </td>
-
-                  <td>
-                    #info#
-                    <!-- <label class="font-medium mb-0 editableInput" name="fullName" size="12" value="Daniel Kristeen"
-                      readonly=""> -->
-                  </td>
-                  <td>
-                    #info#
-                  </td>
-                  <td>
-                    #info#
-                  </td>
-                  <td>
-                    #info#
-                  </td>
-                  <td>
-                    #info#
-                  </td>
-                  <td>
-                    #info#
-                  </td>
-
-                </tr>
-
               </tbody>
             </table>
 

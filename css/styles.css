@@ -80,6 +80,7 @@
 }
 .insideMenu {
   height: 0;
+  /* height: fit-content; */
   transition: height 200ms;
   overflow: hidden;
   /* display: none; */
@@ -250,21 +251,28 @@
   margin: center;
   left: 208px;
   z-index: 5;
-  background-color: rgba(1, 75, 96, 1.52);
-  background-repeat: no-repeat;
+  /* background-color: rgba(1, 75, 96, 1.52); */
   background-size: inherit;
   z-index: 3;
-  transition: height 200ms;
   border-radius: 0 /*0.4rem*/;
   top: 160px;
 }
 
 .mobileToolbarInsideDivs {
   position: relative;
-  height: 100%;
+  /* display: none; */
+  background-color: rgba(1, 75, 96, 1.52);
+  height: 0%;
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  transition: height 200ms;
+  overflow: hidden;
+}
+.mobileToolbarInsideDivs-open {
+  height: 100%;
+  /* display: block; */
 }
 .popUpMsgs {
   width: 444px;
@@ -461,7 +469,6 @@ small {
 
 sub,
 sup {
-  position: relative;
   font-size: 75%;
   line-height: 0;
   vertical-align: baseline;
@@ -1005,7 +1012,6 @@ pre code {
 .col-3,
 .col-2,
 .col-1 {
-  position: relative;
   width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
@@ -2552,7 +2558,6 @@ textarea.form-control {
 }
 
 .form-check {
-  position: relative;
   display: block;
   padding-left: 1.25rem;
 }
@@ -2864,7 +2869,6 @@ textarea.form-control.is-invalid {
     padding-left: 0;
   }
   .form-inline .form-check-input {
-    position: relative;
     flex-shrink: 0;
     margin-top: 0;
     margin-right: 0.25rem;
@@ -3593,7 +3597,6 @@ input[type="button"].btn-block {
 } */
 
 .collapsing {
-  position: relative;
   height: 0;
   overflow: hidden;
   transition: height 0.35s ease;
@@ -3608,7 +3611,6 @@ input[type="button"].btn-block {
 .dropright,
 .dropdown,
 .dropleft {
-  position: relative;
 }
 
 .dropdown-toggle {
@@ -3845,13 +3847,11 @@ input[type="button"].btn-block {
 
 .btn-group,
 .btn-group-vertical {
-  position: relative;
   display: inline-flex;
   vertical-align: middle;
 }
 .btn-group > .btn,
 .btn-group-vertical > .btn {
-  position: relative;
   flex: 1 1 auto;
 }
 .btn-group > .btn:hover,
@@ -3954,7 +3954,6 @@ input[type="button"].btn-block {
 }
 
 .input-group {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
@@ -3964,7 +3963,6 @@ input[type="button"].btn-block {
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
 .input-group > .custom-file {
-  position: relative;
   flex: 1 1 auto;
   width: 1%;
   min-width: 0;
@@ -4022,7 +4020,6 @@ input[type="button"].btn-block {
 }
 .input-group-prepend .btn,
 .input-group-append .btn {
-  position: relative;
   z-index: 2;
 }
 .input-group-prepend .btn:focus,
@@ -4134,7 +4131,6 @@ input[type="button"].btn-block {
 }
 
 .custom-control {
-  position: relative;
   z-index: 1;
   display: block;
   min-height: 1.5rem;
@@ -4182,7 +4178,6 @@ input[type="button"].btn-block {
 }
 
 .custom-control-label {
-  position: relative;
   margin-bottom: 0;
   vertical-align: top;
 }
@@ -4346,7 +4341,6 @@ input[type="button"].btn-block {
 }
 
 .custom-file {
-  position: relative;
   display: inline-block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -4354,7 +4348,6 @@ input[type="button"].btn-block {
 }
 
 .custom-file-input {
-  position: relative;
   z-index: 2;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -4651,7 +4644,6 @@ input[type="button"].btn-block {
 }
 
 .navbar {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -5037,7 +5029,6 @@ input[type="button"].btn-block {
 }
 
 .card {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -5294,7 +5285,6 @@ input[type="button"].btn-block {
 }
 
 .page-link {
-  position: relative;
   display: block;
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
@@ -5395,7 +5385,6 @@ a.badge:focus {
 }
 
 .btn .badge {
-  position: relative;
   top: -1px;
 }
 
@@ -5559,7 +5548,6 @@ a.badge-black.focus {
 }
 
 .alert {
-  position: relative;
   padding: 0.75rem 1.25rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
@@ -5798,7 +5786,6 @@ a.badge-black.focus {
 }
 
 .list-group-item {
-  position: relative;
   display: block;
   padding: 0.75rem 1.25rem;
   background-color: #fff;
@@ -6186,7 +6173,6 @@ a.close.disabled {
 }
 
 .modal-dialog {
-  position: relative;
   width: auto;
   margin: 0.5rem;
   pointer-events: none;
@@ -6249,7 +6235,6 @@ a.close.disabled {
 }
 
 .modal-content {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -6297,7 +6282,6 @@ a.close.disabled {
 }
 
 .modal-body {
-  position: relative;
   flex: 1 1 auto;
   padding: 1rem;
 }
@@ -6642,7 +6626,6 @@ a.close.disabled {
 }
 
 .carousel {
-  position: relative;
 }
 
 .carousel.pointer-event {
@@ -6650,7 +6633,6 @@ a.close.disabled {
 }
 
 .carousel-inner {
-  position: relative;
   width: 100%;
   overflow: hidden;
 }
@@ -6661,7 +6643,6 @@ a.close.disabled {
 }
 
 .carousel-item {
-  position: relative;
   display: none;
   float: left;
   width: 100%;
@@ -7369,7 +7350,6 @@ button.bg-black:focus {
   }
 }
 .embed-responsive {
-  position: relative;
   display: block;
   width: 100%;
   padding: 0;
@@ -8190,8 +8170,6 @@ button.bg-black:focus {
   position: static !important;
 }
 
-.position-relative {
-  position: relative !important;
 }
 
 .position-absolute {
@@ -10961,7 +10939,6 @@ body {
 }
 
 .masthead {
-  position: relative;
   width: 100%;
   height: auto;
   min-height: 35rem;

@@ -1,14 +1,29 @@
+// var img111 = new Image();
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // the event occurred
+    // myDropzone = new Dropzone("#IconPicker", {
+    //     url: (file) => {
+    //         alert(file)
+    //     }
+    // });
+    registerToEvents();
+})
+
 let openedSideButton;
 let openedInsideButton;
 
-var img111 = new Image();
+/****************************************/
+/*        Using Imported Classes:       */
+/****************************************/
 
+
+//jsPDF
 var specialElementHandlers = {
     '#editor': function (element, renderer) {
         return true;
     }
 };
-
 
 function saveToPDF() {
 
@@ -26,6 +41,7 @@ function saveToPDF() {
     doc.save('Area Information.pdf');
 }
 
+//Save image bits
 function getBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -61,21 +77,12 @@ function handleFiles(fileList) {
 }
 
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    //the event occurred
-    // myDropzone = new Dropzone("#IconPicker", {
-    //     url: (file) => {
-    //         alert(file)
-    //     }
-    // });
-})
+/****************************************/
+/*              Global Functions:       */
+/****************************************/
 
 
-const clearOpenedInsideButton = () => {
-    if (openedInsideButton) {
-        openedInsideButton.classList.remove('btn-insideMenu-selected');
-    }
-}
+
 const clearOpenedsideButton = (toggleDivID) => {
     let selectedButton = $('#divMapSideMenu').find('.btn-sideMenu-selected')[0]
     if (selectedButton) {
@@ -92,29 +99,32 @@ const clearOpenedsideButton = (toggleDivID) => {
 
 }
 
-
-
-
-function toggleDiv(params) {
-
-    clearOpenedInsideButton();
+function onSideButtonClicked(params) {
+    //example: {id:'shapeAreas', targetEvent: event.target}
     if (clearOpenedsideButton(params.id)) {
         //Open new One:
         if (params.id) {
             openedSideButton = document.getElementById(params.id);;
             openedSideButton.classList.add('insideMenu-open');
-            // openedSideButton.style.display = 'contents';
-            // openedSideButton.style.display === 'none' ? openedSideButton.style.display = 'contents' : openedSideButton.style.display = 'none';
             params.targetEvent.classList.add('btn-sideMenu-selected')
+        }
+        else {
+            toggleSideMenu();
+            //Do Action As Requested
+            switch (params.targetEvent.id) {
+                case "filterFlight":
+                    $('#filterAreasToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+
+
+            }
+
         }
     }
 
 
 }
 
-
-
-const toggleButtons = (params) => {
+const toggleStyleClasses = (params) => {
     // [{id: , classes:[]}]
     params.forEach(el => {
         el.classes.forEach(elClass => {
@@ -123,24 +133,122 @@ const toggleButtons = (params) => {
     })
 
 }
-document.getElementById('openSideMenuBtn').addEventListener('click', () => toggleButtons([{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }, { id: 'signOpenSideMenu', classes: ['fa', 'fa-times', 'fas', 'fa-bars'] }]));
-
-
 
 const onInsideButtonClicked = (e) => {
-    clearOpenedInsideButton();
     //Create New Selected-inside-nutton
-    e.target.classList.add('btn-insideMenu-selected');
     openedInsideButton = e.target
-
+    console.log(e.target.attributes.getNamedItem('handler').value)
     //After Work Done- close toggle 
-    // switch (e.target.closest('div').id){
-    // case 'shapeAreas':
-    //return onClickShapeArea({shapeType: e.target.attributes.getNamedItem('handler').value })
+    switch (e.target.closest('div').id) {
+        case 'shapeAreas':
+            //Show toolbar: Make sure to close it when starting drawing/choosing shape
+            $('#AreaChooseShapeToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+            break
+        //AreaChooseShape
+        //return onClickShapeArea({shapeType: e.target.attributes.getNamedItem('handler').value })
 
-    // }
+        // case 'filterAreas':
+        //Show toolbar: Make sure to close it when starting drawing/choosing shape
+
+
+
+        //Do the Requested Action: and maybe opened needed toolbar.
+        //Needed toolbar: .mobileToolbarInsideDivs-open
+    }
+    //Earse Father class selected and close the Side Menu
+    clearOpenedsideButton();
+    toggleSideMenu();
+}
+
+
+const closeInsideSettingDiv = ({ divId }) => {
+    let openedDiv = $('#toolbarBoxesDiv').find('.toolbarBoxes-open')[0];
+    openedDiv && openedDiv.id != divId && openedDiv.classList.remove('toolbarBoxes-open');
+}
+
+
+
+/****************************************/
+/*            Specific Functions:       */
+/****************************************/
+
+const toggleSideMenu = () => {
+    toggleStyleClasses([{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }, { id: 'signOpenSideMenu', classes: ['fa', 'fa-times', 'fas', 'fa-bars'] }]);
 
 }
+
+const onSetAreaNameClicked = ({ nameInput, buttonSign, targetEvent, }) => {
+    //nameInput:'inputAreaName', buttonSign:'popUpEditSign'
+
+    toggleStyleClasses([{ id: buttonSign, classes: ['fa-edit', 'fa-save'] }]);
+    let elNameInput = $(`#${nameInput}`)[0];
+
+    // debugger
+    if (elNameInput.hasAttribute("disabled")) {
+        elNameInput.removeAttribute("disabled");
+    }
+    else {
+
+        elNameInput.setAttribute("disabled", "");
+        //Save New Name to the shape
+
+
+    }
+}
+
+const registerToEvents = () => {
+    document.getElementById('openSideMenuBtn').addEventListener('click', toggleSideMenu);
+
+    $('.insideMenu').on('click', 'button', onInsideButtonClicked);
+
+
+    document.getElementById('popUpSettingsBtn').addEventListener('click', () => {
+        closeInsideSettingDiv({ divId: 'popUpSettings' });
+        toggleStyleClasses([{ id: 'popUpSettings', classes: ['popUpSettingBlock-open'] }, { id: 'popUpSettingSign', classes: ['spinnFontAwsome'] }]);
+    })
+
+    document.getElementById('popUpSearchBtn').addEventListener('click', () => {
+        // closeInsideSettingDiv({ divId: 'popUpSettings' });
+        toggleStyleClasses([{ id: 'searchInputDiv', classes: ['popUpSearchBlock-open'] }]);
+        //+focus on input if opened
+        let selectedButton = $('#searchInputDiv')[0];
+        selectedButton && selectedButton.classList.contains('popUpSearchBlock-open') && document.getElementById("searchInput").focus();
+
+    })
+
+
+
+    //Toolbar Registration To Events
+    document.getElementById('setColor').addEventListener('click', () => {
+        closeInsideSettingDiv({ divId: 'setColorToolbar' });
+        toggleStyleClasses([{ id: 'setColorToolbar', classes: ['toolbarBoxes-open'] }])
+    })
+
+    document.getElementById('setText').addEventListener('click', () => {
+        closeInsideSettingDiv({ divId: 'textToolbar' });
+        toggleStyleClasses([{ id: 'textToolbar', classes: ['toolbarBoxes-open'] }])
+    })
+
+    document.getElementById('setIcon').addEventListener('click', () => {
+        closeInsideSettingDiv({ divId: 'iconToolbar' });
+        toggleStyleClasses([{ id: 'iconToolbar', classes: ['toolbarBoxes-open'] }])
+    })
+
+
+
+}
+
+
+const onAreaClicked = () => {
+    //style: .mobileToolbarInsideDivs-open
+
+
+}
+
+
+
+
+
 
 
 // const onShapeChoosen = ({target, targetId}) => {
@@ -149,49 +257,12 @@ const onInsideButtonClicked = (e) => {
 //     //         alert('POlygon');
 //     // }
 
-const closeInsideSettingDiv = ({ divId }) => {
-    // debugger
-    let openedDiv = $('#toolbarBoxesDiv').find('.toolbarBoxes-open')[0];
-    openedDiv && openedDiv.id != divId && openedDiv.classList.remove('toolbarBoxes-open');
-}
+
 
 
 //     //    toggleButtons( [{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }]);
 // }
-$('.insideMenu').on('click', 'button', onInsideButtonClicked);
 
-
-document.getElementById('popUpSettingsBtn').addEventListener('click', () => {
-    closeInsideSettingDiv({ divId: 'popUpSettings' });
-    toggleButtons([{ id: 'popUpSettings', classes: ['popUpSettingBlock-open'] }, { id: 'popUpSettingSign', classes: ['spinnFontAwsome'] }]);
-})
-
-document.getElementById('popUpSearchBtn').addEventListener('click', () => {
-    // closeInsideSettingDiv({ divId: 'popUpSettings' });
-    toggleButtons([{ id: 'searchInputDiv', classes: ['popUpSearchBlock-open'] }]);
-    //+focus on input if opened
-    let selectedButton = $('#searchInputDiv')[0];
-    selectedButton && selectedButton.classList.contains('popUpSearchBlock-open') && document.getElementById("searchInput").focus();
-
-})
-
-
-
-//Toolbar Registration To Events
-document.getElementById('setColor').addEventListener('click', () => {
-    closeInsideSettingDiv({ divId: 'setColorToolbar' });
-    toggleButtons([{ id: 'setColorToolbar', classes: ['toolbarBoxes-open'] }])
-})
-
-document.getElementById('setText').addEventListener('click', () => {
-    closeInsideSettingDiv({ divId: 'textToolbar' });
-    toggleButtons([{ id: 'textToolbar', classes: ['toolbarBoxes-open'] }])
-})
-
-document.getElementById('setIcon').addEventListener('click', () => {
-    closeInsideSettingDiv({ divId: 'iconToolbar' });
-    toggleButtons([{ id: 'iconToolbar', classes: ['toolbarBoxes-open'] }])
-})
 
 
 // document.getElementById('openMobileToolbarBtn').addEventListener('click', () => toggleButtons([{ id: 'mobileToolbar', classes: ['mobileToolbar-open'] }, { id: 'signOpenToolbarMenu', classes: ['fa-angle-up', 'fa-angle-down'] }]));
@@ -280,6 +351,7 @@ function createAirplaneIcon(el) {
     // let lat = el[6]
     mapVectorSource.addFeature(airplane)
 }
+
 function degrees_to_radians(degrees) {
     var pi = Math.PI;
     return degrees * (pi / 180);
@@ -353,7 +425,11 @@ setInterval(requestForIsraelAirplanes, 10000);
 
 
 
-//Draw for 
+
+/****************************************/
+/*            Draw Shapes               */
+/****************************************/
+
 const draw = new ol.interaction.Draw({
     source: mapVectorSource,
     type: "Polygon",
@@ -363,6 +439,11 @@ drawPolygon = () => {
     draw.on('drawend', () => map.removeInteraction(draw));
 }
 
+
+
+/****************************************/
+/*            Table JS                 */
+/****************************************/
 
 /*function addUserEvent(event) {
     debugger
@@ -395,20 +476,20 @@ drawPolygon = () => {
     newRaw.getElementsByClassName('saveUserStyle')[0].addEventListener('click', saveUserEvent)
     newRaw.getElementsByClassName('deleteUserStyle')[0].addEventListener('click', deleteUserEvent)
 
+*/
 
-///////////////////////////////////////////////////////////    Unix Time
 
+/****************************************/
+/*            Unix Time               */
+/****************************************/
+
+
+/*
 בהתחלה ניסינו לבקש מהשרת בjavaScript את הנתונים, ולנסות 'לגעת' במשתנים.
 כדי לקבל את הזמן ברגע הבקשה ולהמיר אותה ל unix-time:
 let epochTime=Math.round(new Date().getTime() / 1000)
 כדי לקבל את התאריך בחזרה:
 let normalTime= newDate(0); // 0:sets the date to epoch
 normalTime.setUTCSeconds(epochTime);
-
-
-
-
-
-
-  }
+}
 */
