@@ -62,6 +62,7 @@ function handleFiles(fileList) {
             (dataBase64) => {
                 //in order to change icons we have to make sure:
                 //that after  updating the image the airplanes will still have thier true track. 
+                changeAirplaneIcon(dataBase64)
                 console.log(dataBase64)
             }
         );
@@ -77,13 +78,24 @@ function handleFiles(fileList) {
 }
 
 
+//export to excel:
+function exportReportToExcel() {
+    let table = document.getElementById("tableId"); // you can use document.getElementById('tableId') as well by providing id to the table tag
+    TableToExcel.convert(table, { // html code may contain multiple tables so here we are refering to 1st table tag
+        name: `export.xlsx`, // fileName you could use any name
+        sheet: {
+            name: 'Sheet 1' // sheetName
+        }
+    });
+}
+
 /****************************************/
 /*              Global Functions:       */
 /****************************************/
 
 
 
-const clearOpenedsideButton = (toggleDivID) => {
+const clearOpenedSideButton = (toggleDivID) => {
     let selectedButton = $('#divMapSideMenu').find('.btn-sideMenu-selected')[0]
     if (selectedButton) {
         selectedButton.classList.remove('btn-sideMenu-selected');
@@ -101,7 +113,7 @@ const clearOpenedsideButton = (toggleDivID) => {
 
 function onSideButtonClicked(params) {
     //example: {id:'shapeAreas', targetEvent: event.target}
-    if (clearOpenedsideButton(params.id)) {
+    if (clearOpenedSideButton(params.id)) {
         //Open new One:
         if (params.id) {
             openedSideButton = document.getElementById(params.id);;
@@ -110,16 +122,17 @@ function onSideButtonClicked(params) {
         }
         else {
             toggleSideMenu();
-            closeOpenMobileToolbar({})
+            sideButtonsHandler({ id: params.targetEvent.id })
+            // closeOpenMobileToolbar({})
 
-            //Do Action As Requested
-            switch (params.targetEvent.id) {
-                case "filterFlight":
-                    $('#filterAreasToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
-                    break;
+            // //Do Action As Requested
+            // switch (params.targetEvent.id) {
+            //     case "filterFlight":
+            //         $('#filterAreasToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+            //         break;
 
 
-            }
+            // }
 
         }
     }
@@ -142,28 +155,48 @@ const onInsideButtonClicked = (e) => {
     openedInsideButton = e.target
     console.log(e.target.attributes.getNamedItem('handler').value)
     //After Work Done- close toggle 
-    switch (e.target.closest('div').id) {
-        case 'shapeAreas':
-            //Show toolbar: Make sure to close it when starting drawing/choosing shape
-            closeOpenMobileToolbar({ divId: 'AreaChooseShapeToolbar' })
-            $('#AreaChooseShapeToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
-            break
-        //AreaChooseShape
-        //return onClickShapeArea({shapeType: e.target.attributes.getNamedItem('handler').value })
-
-        // case 'filterAreas':
-        //Show toolbar: Make sure to close it when starting drawing/choosing shape
 
 
+    sideButtonsHandler({ id: e.target.closest('div').id });
+    // switch (e.target.closest('div').id) {
+    //     case 'shapeAreas':
+    //         //Show toolbar: Make sure to close it when starting drawing/choosing shape
+    //         closeOpenMobileToolbar({ divId: 'AreaChooseShapeToolbar' })
+    //         $('#AreaChooseShapeToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+    //         break
+    //AreaChooseShape
+    //return onClickShapeArea({shapeType: e.target.attributes.getNamedItem('handler').value })
 
-        //Do the Requested Action: and maybe opened needed toolbar.
-        //Needed toolbar: .mobileToolbarInsideDivs-open
-    }
+    // case 'filterAreas':
+    //Show toolbar: Make sure to close it when starting drawing/choosing shape
+
+
+
+    //Do the Requested Action: and maybe opened needed toolbar.
+    //Needed toolbar: .mobileToolbarInsideDivs-open
+    // }
     //Earse Father class selected and close the Side Menu
-    clearOpenedsideButton();
+    clearOpenedSideButton();
     toggleSideMenu();
 }
 
+const sideButtonsHandler = ({ id }) => {
+
+    closeOpenMobileToolbar({})
+
+    //Do Action As Requested
+    switch (id) {
+        case 'shapeAreas':
+            //Show toolbar: Make sure to close it when starting drawing/choosing shape
+            // closeOpenMobileToolbar({ divId: 'AreaChooseShapeToolbar' })
+            $('#AreaChooseShapeToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+            break
+        case "filterFlight":
+            $('#filterAreasToolbar')[0].classList.add('mobileToolbarInsideDivs-open');
+            break;
+
+    }
+}
 
 const closeInsideSettingDiv = ({ divId }) => {
     let openedDiv = $('#toolbarBoxesDiv').find('.toolbarBoxes-open')[0];
@@ -253,38 +286,6 @@ const onAreaClicked = () => {
 
 }
 
-
-
-
-
-
-
-// const onShapeChoosen = ({target, targetId}) => {
-//     // switch (targetId) {
-//     //     case 'Polygon':
-//     //         alert('POlygon');
-//     // }
-
-
-
-
-//     //    toggleButtons( [{ id: 'divMapSideMenu', classes: ['mapMenu-open'] }]);
-// }
-
-
-
-// document.getElementById('openMobileToolbarBtn').addEventListener('click', () => toggleButtons([{ id: 'mobileToolbar', classes: ['mobileToolbar-open'] }, { id: 'signOpenToolbarMenu', classes: ['fa-angle-up', 'fa-angle-down'] }]));
-// fas fa-angle-upfas fa-angle-down
-
-// document.getElementById('openSideMenuBtn').addEventListener('click', () => {
-//     document.getElementById('divMapSideMenu').classList.toggle('mapMenu-open');
-//     //fa fa-times
-//     //fas fa-bars
-//     document.getElementById('signOpenSideMenu').classList.toggle('fa');
-//     document.getElementById('signOpenSideMenu').classList.toggle('fa-times');
-//     document.getElementById('signOpenSideMenu').classList.toggle('fas');
-//     document.getElementById('signOpenSideMenu').classList.toggle('fa-bars');
-// })
 
 
 
@@ -433,6 +434,13 @@ setInterval(requestForIsraelAirplanes, 10000);
 
 
 
+changeAirplaneIcon = (iconBits) => {
+    // debugger
+    mapVectorSource.getFeatures().forEach(feature => {
+        feature.getStyle().setImage(new ol.style.Icon({ src: iconBits }))
+        feature.changed();
+    })
+}
 
 /****************************************/
 /*            Draw Shapes               */
