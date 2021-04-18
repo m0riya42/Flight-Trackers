@@ -199,11 +199,13 @@ const sideButtonsHandler = ({ id }) => {
 }
 
 const closeInsideSettingDiv = ({ divId }) => {
+    debugger
     let openedDiv = $('#toolbarBoxesDiv').find('.toolbarBoxes-open')[0];
     openedDiv && openedDiv.id != divId && openedDiv.classList.remove('toolbarBoxes-open');
 }
 
 const closeOpenMobileToolbar = ({ divId }) => {
+    debugger
     let openedDiv = $('#mobileToolbarDiv').find('.mobileToolbarInsideDivs-open')[0];
     openedDiv && openedDiv.id != divId && openedDiv.classList.remove('mobileToolbarInsideDivs-open');
 }
@@ -321,12 +323,12 @@ const map = new ol.Map({
     // ],
     layers: [
         new ol.layer.Tile({
-            // source: new ol.source.OSM() //original map
-            source: new ol.source.XYZ({
-                attributions: attributions,
-                url: 'https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=' + key,
-                tileSize: 512,
-            }),
+            source: new ol.source.OSM(), //original map
+            //     source: new ol.source.XYZ({
+            //         attributions: attributions,
+            //         url: 'https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=' + key,
+            //         tileSize: 512,
+            //     }),
         }), mapVectorLayer],
 });
 
