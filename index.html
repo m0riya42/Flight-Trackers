@@ -9,8 +9,8 @@
   <title>Flight Trackers</title>
   <link rel="icon" type="image/x-icon" href="assets/img/favicon2.ico" />
 
-<!--excel-->
-<script type="text/javascript" src="./js//table-to-excel/tableToExcel.js"></script>
+  <!--excel-->
+  <script type="text/javascript" src="./js//table-to-excel/tableToExcel.js"></script>
 
 
   <!--jsPDF-->
@@ -45,7 +45,8 @@
 
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <a class="navbar-brand js-scroll-trigger" href="#page-top">Flight Trackers
+    <a class="navbar-brand js-scroll-trigger" href="#page-top" style=" font-family: 'Track-Regular';
+    letter-spacing: 0.2rem;">Flight Trackers
       <img src="./assets/img/airplaneSign2.png" style="height: 34px; filter: opacity(0.75)" />
     </a>
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -81,9 +82,11 @@
 
         <div>
           <h2 class="text-white-50 mx-auto mt-2 mb-5">
-            A free and open application to track and analyze flights.
+            A Free and Open Application to Track and Analyze Flights
           </h2>
-          <a class="btn btn-primary js-scroll-trigger" href="#map" style="background-color: #014c60">Track Your
+          <a class="btn btn-primary js-scroll-trigger" href="#map"
+            style=" font-family: 'Track-Regular' !important ;background-color: #014c60"><i
+              class="fas fa-location-arrow"></i> &nbsp Track Your
             Flight</a>
         </div>
       </div>
@@ -98,24 +101,26 @@
         class="fontAwsomeHover fas fa-bars"></i></button>
     <div id="divMapSideMenu" class="mapMenu">
       <div style="padding: 9px;">
-         </br>
-      </br>
-      <button class="btn btn-sideMenu"  onclick="onSideButtonClicked( { targetEvent: event.target})">Instructions</button>
-      <!--open modal with explantions-->
-      <button class="btn btn-sideMenu" onclick="onSideButtonClicked( {id:'shapeAreas', targetEvent: event.target})">Draw
-        Area
-      </button>
+        </br>
+        </br>
+        <button class="btn btn-sideMenu"
+          onclick="onSideButtonClicked( { targetEvent: event.target})">Instructions</button>
+        <!--open modal with explantions-->
+        <button class="btn btn-sideMenu"
+          onclick="onSideButtonClicked( {id:'shapeAreas', targetEvent: event.target})">Draw
+          Area
+        </button>
 
-      <div id="shapeAreas" class="insideMenu">
-        <button class="btn btn-sideMenu btn-insideMenu" handler="Alert Area">Alert Area</button>
-        <button class="btn btn-sideMenu btn-insideMenu" handler="Counter Area">Counter Area</button>
+        <div id="shapeAreas" class="insideMenu">
+          <button class="btn btn-sideMenu btn-insideMenu" handler="Alert Area">Alert Area</button>
+          <button class="btn btn-sideMenu btn-insideMenu" handler="Counter Area">Counter Area</button>
+        </div>
+        <button id="filterFlight" class="btn btn-sideMenu"
+          onclick="onSideButtonClicked({targetEvent: event.target})">Filter Flights </button>
+
       </div>
-      <button id="filterFlight" class="btn btn-sideMenu"
-        onclick="onSideButtonClicked({targetEvent: event.target})">Filter Flights </button>
 
-      </div>
 
-     
 
     </div>
 
@@ -411,7 +416,7 @@
         <div style="right: 30px;">
           <div class="table-responsive" style="overflow-x: unset !important ;">
             <table ID="tableId" class="table no-wrap user-table mb-0  table table-striped table table-bordered">
-              <thead style="background: #024a5f; color: white"  data-a-rtl="false">
+              <thead style="background: #024a5f; color: white" data-a-rtl="false">
                 <tr>
                   <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
                   <th scope="col" class="border-0 text-uppercase font-medium" data-f-bold="true">Callsign</th>
@@ -429,7 +434,7 @@
 
 
                 <tr>
-                  <td class="pl-4" >
+                  <td class="pl-4">
                     1
                   </td>
 
@@ -494,7 +499,7 @@
 
       <br>
       <button class="btn btn-primary" onclick="exportReportToExcel()">
-      <!-- <button class="btn btn-primary" onclick="saveToPDF()"> -->
+        <!-- <button class="btn btn-primary" onclick="saveToPDF()"> -->
         Generate Table into EXCEL File
       </button>
 

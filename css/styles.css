@@ -60,6 +60,18 @@
   font-family: "Varela Round";
   src: url(../fonts/VarelaRound-Regular.ttf);
 }
+@font-face {
+  font-family: "Track-Regular";
+  src: url(../fonts/Track-Regular.otf);
+}
+@font-face {
+  font-family: "Track-RegularItalic";
+  src: url(../fonts/Track-RegularItalic.otf);
+}
+@font-face {
+  font-family: "calibril";
+  src: url(../fonts/calibril.ttf);
+}
 
 .mastheadStyle {
   height: 648px;
@@ -10960,7 +10972,7 @@ body {
   background-size: cover;
 }
 .masthead h1 {
-  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  font-family: "Track-Regular", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 2.5rem;
@@ -10989,7 +11001,7 @@ body {
   .masthead h1 {
     font-size: 4.5rem;
     line-height: 5.5rem;
-    letter-spacing: 0.8rem;
+    letter-spacing: 0.6rem;
   }
   .masthead h2 {
     max-width: 37rem;
