@@ -223,14 +223,17 @@
 .btn-sideMenu-selected {
   outline: none;
   -webkit-text-stroke: 0.8px #fff;
-  background: rgba(255, 255, 255, 0.25) !important;
+  /* background: rgba(255, 255, 255, 0.25) !important; */
+  background: #70aec0;
+
 
   /* border-bottom: 0.15rem solid #fff; */
   /* border: #fff; */
 }
 .btn-sideMenu:hover {
   -webkit-text-stroke: 0.5px #fff;
-  background: rgba(255, 255, 255, 0.15);
+  background: #70aec0;
+  /* background: rgba(255, 255, 255, 0.15); */
 }
 
 .btn-insideMenu {
